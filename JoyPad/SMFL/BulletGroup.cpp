@@ -23,6 +23,7 @@ void BulletGroup::Update(sf::Time p_deltaTime, sf::Vector2f p_screenDimensions)
 			m_bulletList.at(i).GetPosition().y > p_screenDimensions.y || m_bulletList.at(i).GetPosition().y < -m_bulletRadius)
 		{
 			m_bulletList.erase(m_bulletList.begin() + i);
+
 		}
 	}
 }
