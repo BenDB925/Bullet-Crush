@@ -62,5 +62,6 @@ private:
 	static const float m_ANIMTIMER, m_BULLETDELAYTIMER;
 	static const float m_SPEED, m_BULLETSPEED;
 	static const int m_WIDTH, m_HEIGHT, m_MAXFRAMES;
+	static const float m_DEGTORAD;
 };
 

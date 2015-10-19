@@ -10,6 +10,8 @@ const float Player::m_BULLETSPEED = 3;
 const int Player::m_MAXFRAMES = 5;
 const int Player::m_WIDTH = 64;
 const int Player::m_HEIGHT = 78;
+const float Player::m_DEGTORAD = acos(-1) / 180;
+
 
 // Default Constructor
 ///////////////////////////
@@ -101,7 +103,7 @@ void Player::Shoot(int i)
 	{
 		for (int j = -10; j < 20; j += 10)
 		{
-			float temp = j * acos(-1) / 180;
+			float temp = j * m_DEGTORAD;
 			m_bulletVel = sf::Vector2f(cos(m_angle + temp), sin(m_angle + temp));
 
 			sf::Vector2f position = m_towers.at(i).getOrigin() + (m_bulletVel * 5.0f);
