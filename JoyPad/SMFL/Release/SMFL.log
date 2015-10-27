@@ -1,0 +1,37 @@
+﻿Build started 20/10/2015 13:03:04.
+     1>Project "C:\Users\Jason Power\Desktop\BulletCrush\JoyPad\SMFL\SMFL.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Release\SMFL.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\SMFL.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Bullet.cpp BulletGroup.cpp BulletManager.cpp Enemy.cpp EnemyManager.cpp ExplosionBulletPattern.cpp HomingEnemy.cpp Player.cpp PlControls.cpp SMFL.cpp SpiralBulletPattern.cpp StraightBulletGroup.cpp Tower.cpp
+         Bullet.cpp
+     1>c:\users\jason power\desktop\bulletcrush\joypad\smfl\Bullet.h(2): fatal error C1083: Cannot open include file: 'SFML\System\Vector2.hpp': No such file or directory
+         BulletGroup.cpp
+     1>c:\users\jason power\desktop\bulletcrush\joypad\smfl\Bullet.h(2): fatal error C1083: Cannot open include file: 'SFML\System\Vector2.hpp': No such file or directory
+         BulletManager.cpp
+     1>c:\users\jason power\desktop\bulletcrush\joypad\smfl\BulletManager.h(2): fatal error C1083: Cannot open include file: 'SFML\System\Time.hpp': No such file or directory
+         Enemy.cpp
+     1>c:\users\jason power\desktop\bulletcrush\joypad\smfl\Enemy.h(2): fatal error C1083: Cannot open include file: 'SFML\System\Vector2.hpp': No such file or directory
+         EnemyManager.cpp
+     1>c:\users\jason power\desktop\bulletcrush\joypad\smfl\Enemy.h(2): fatal error C1083: Cannot open include file: 'SFML\System\Vector2.hpp': No such file or directory
+         ExplosionBulletPattern.cpp
+     1>c:\users\jason power\desktop\bulletcrush\joypad\smfl\Bullet.h(2): fatal error C1083: Cannot open include file: 'SFML\System\Vector2.hpp': No such file or directory
+         HomingEnemy.cpp
+     1>c:\users\jason power\desktop\bulletcrush\joypad\smfl\Enemy.h(2): fatal error C1083: Cannot open include file: 'SFML\System\Vector2.hpp': No such file or directory
+         Player.cpp
+     1>c:\users\jason power\desktop\bulletcrush\joypad\smfl\Player.h(1): fatal error C1083: Cannot open include file: 'SFML/System/Vector2.hpp': No such file or directory
+         PlControls.cpp
+     1>c:\users\jason power\desktop\bulletcrush\joypad\smfl\PlControls.h(2): fatal error C1083: Cannot open include file: 'SFML\System\Vector2.hpp': No such file or directory
+         SMFL.cpp
+     1>SMFL.cpp(21): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+         SpiralBulletPattern.cpp
+     1>c:\users\jason power\desktop\bulletcrush\joypad\smfl\Bullet.h(2): fatal error C1083: Cannot open include file: 'SFML\System\Vector2.hpp': No such file or directory
+         StraightBulletGroup.cpp
+     1>c:\users\jason power\desktop\bulletcrush\joypad\smfl\StraightBulletGroup.h(2): fatal error C1083: Cannot open include file: 'SFML\System\Vector2.hpp': No such file or directory
+         Tower.cpp
+     1>c:\users\jason power\desktop\bulletcrush\joypad\smfl\Tower.h(2): fatal error C1083: Cannot open include file: 'SFML\Graphics\Sprite.hpp': No such file or directory
+     1>Done Building Project "C:\Users\Jason Power\Desktop\BulletCrush\JoyPad\SMFL\SMFL.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:01.68

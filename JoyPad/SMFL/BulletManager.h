@@ -28,7 +28,6 @@ public:
 	void AddExplosion(sf::Vector2f p_point, int p_numColumns);
 	int AddStraight(StraightBulletGroup *p_pattern);
 	void PlayerFireBullet(sf::Vector2f p_position, float p_velocity, sf::Vector2f p_direction, BulletManager::WeaponType p_weaponType);
-	std::vector<BulletGroup> * GetBulletList();
 
 	static BulletManager& Instance();
 
