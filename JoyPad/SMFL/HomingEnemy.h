@@ -3,7 +3,7 @@
 class HomingEnemy : public Enemy
 {
 public:
-	HomingEnemy(sf::Texture * p_tex, sf::IntRect p_texRect);
+	HomingEnemy(sf::Vector2f p_position, sf::Texture * p_tex, sf::IntRect p_texRect);
 	~HomingEnemy();
 	void Init();
 	void Update(sf::Vector2f p_playerPos);

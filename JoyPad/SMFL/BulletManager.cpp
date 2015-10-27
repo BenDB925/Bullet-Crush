@@ -90,3 +90,13 @@ void BulletManager::PlayerFireBullet(sf::Vector2f p_position, float p_velocity, 
 		m_playerBullets.AddBullet(p_position, p_velocity, p_direction, m_pTextureAtlas, m_SPREAD_TEX_COORDS);
 }
 
+std::vector<BulletGroup> * BulletManager::GetBulletList()
+{
+	return &m_bulletGroups;
+}
+
+StraightBulletGroup * BulletManager::GetPlBulletList()
+{
+	return &m_playerBullets;
+}
+

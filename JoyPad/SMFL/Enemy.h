@@ -14,6 +14,7 @@ public:
 
 	sf::Sprite * Enemy::GetTexture();
 	sf::IntRect GetCollisionBox() { return m_collisionBox; }
+	void SetPosition(sf::Vector2f p_pos);
 
 protected:
 	sf::Vector2f m_position;

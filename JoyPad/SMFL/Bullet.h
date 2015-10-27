@@ -17,12 +17,15 @@ public:
 
 	sf::Sprite * GetTexture();
 	sf::Vector2f GetPosition();
+	sf::IntRect GetCollisionRect();
+	void SetPosition(sf::Vector2f p_pos);
 
 private:
 	sf::Vector2f m_position;
 	sf::Vector2f m_velocity;
 	int m_radius;
 	sf::Sprite m_sprite;
+	sf::IntRect m_collisionRect;
 	static const float m_RADTODEG;
 };
 

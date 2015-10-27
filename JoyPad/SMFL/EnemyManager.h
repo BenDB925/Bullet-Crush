@@ -20,6 +20,6 @@ private:
 
 	sf::IntRect m_HOMING_ENEM_COORDS;
 
-	void AddHomingEnem();
+	void AddHomingEnem(sf::Vector2f p_position);
 };
 

@@ -24,7 +24,10 @@ EnemyManager& EnemyManager::Instance()
 void EnemyManager::Init(sf::Texture& p_tex)
 {
 	m_textureAtlas = &p_tex;
-	AddHomingEnem();
+	for (int i = 0; i < 5; i++)
+	{
+		AddHomingEnem(sf::Vector2f( i* 100, 100));
+	}
 }
 
 void EnemyManager::Update(sf::Vector2f p_playerPos)
@@ -43,9 +46,9 @@ void EnemyManager::Draw(sf::RenderWindow& p_window)
 	}
 }
 
-void EnemyManager::AddHomingEnem()
+void EnemyManager::AddHomingEnem(sf::Vector2f p_position)
 {
-	m_enemyList.push_back(new HomingEnemy(m_textureAtlas, m_HOMING_ENEM_COORDS));
+	m_enemyList.push_back(new HomingEnemy(p_position, m_textureAtlas, m_HOMING_ENEM_COORDS));
 	m_enemyList.at(m_enemyList.size() - 1)->Init();
 }
 

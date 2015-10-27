@@ -23,11 +23,11 @@ sf::Vector2f Normalise(sf::Vector2f p_vec)
 	return p_vec;
 }
 
-HomingEnemy::HomingEnemy(sf::Texture * p_tex, sf::IntRect p_texRect)
+HomingEnemy::HomingEnemy(sf::Vector2f p_position, sf::Texture * p_tex, sf::IntRect p_texRect)
 {
 	m_sprite = sf::Sprite(*p_tex);
 	m_sprite.setTextureRect(p_texRect);
-	m_position = sf::Vector2f(100, 100);
+	m_position = p_position;
 	m_sprite.setPosition(m_position);
 }
 

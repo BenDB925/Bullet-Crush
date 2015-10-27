@@ -14,5 +14,7 @@ public:
 	static CollisionManager& Instance();
 
 	void CheckCollisions(sf::IntRect p_playerPos);
+private:
+	void PlBulletEnemy();
 };
 

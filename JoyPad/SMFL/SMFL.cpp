@@ -28,6 +28,7 @@
 #include "PlControls.h"
 #include "EnemyManager.h"
 #include "Level.h"
+#include "CollisionManager.h"
 
 
 
@@ -66,6 +67,7 @@ void Init()
 
 	BulletManager::Instance().Init(*&m_tex);
 	EnemyManager::Instance().Init(*&m_tex);
+	CollisionManager::Instance().Init();
 }
 void LoadContent()
 {
@@ -94,6 +96,7 @@ void(UpdateGame())
 	player.Update(deltaTime);
 	BulletManager::Instance().Update(deltaTime, screenDimensions);
 	EnemyManager::Instance().Update(player.getPosition());
+	CollisionManager::Instance().CheckCollisions(player.GetCollisionBox());
 }
 void(UpdateGameOver())
 {

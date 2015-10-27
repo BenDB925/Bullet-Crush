@@ -88,7 +88,6 @@ void Player::Update(sf::Time p_deltaTime)
 			if (m_towers.at(towerNo).getAlive())
 				m_towers.at(towerNo).Update(m_velocity);
 		}
-		m_collisionRect = sf::IntRect(m_position.x - m_COLLISIONBOXSIZE / 2, m_position.y - m_COLLISIONBOXSIZE / 2, m_COLLISIONBOXSIZE, m_COLLISIONBOXSIZE);
 	}
 	//Check state of joystick Analog B
 	/////////////////////////////////////////////
@@ -102,6 +101,8 @@ void Player::Update(sf::Time p_deltaTime)
 			m_delay = m_BULLETDELAYTIMER;
 		}
 	}
+
+	m_collisionRect = sf::IntRect(m_position.x - m_COLLISIONBOXSIZE / 2, m_position.y - m_COLLISIONBOXSIZE / 2, m_COLLISIONBOXSIZE, m_COLLISIONBOXSIZE);
 }
 
 

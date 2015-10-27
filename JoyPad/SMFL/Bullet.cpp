@@ -49,11 +49,21 @@ void Bullet::Update(sf::Time p_deltaTime)
 	//m_circleShape.setPosition(m_position);
 	m_sprite.setPosition(m_position);
 	
-
+	m_collisionRect = sf::IntRect(m_position.x - m_radius, m_position.y - m_radius, m_radius * 2, m_radius * 2);
 }
 
 sf::Vector2f Bullet::GetPosition()
 {
 	return m_position;
+}
+
+sf::IntRect Bullet::GetCollisionRect()
+{
+	return m_collisionRect;
+}
+
+void Bullet::SetPosition(sf::Vector2f p_pos)
+{
+	m_position = p_pos;
 }
 
