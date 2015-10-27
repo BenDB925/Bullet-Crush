@@ -84,6 +84,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletGroup.h" />
     <ClInclude Include="BulletManager.h" />
+    <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="ExplosionBulletPattern.h" />
@@ -100,6 +101,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletGroup.cpp" />
     <ClCompile Include="BulletManager.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="ExplosionBulletPattern.cpp" />

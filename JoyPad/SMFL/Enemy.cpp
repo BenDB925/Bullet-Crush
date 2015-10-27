@@ -11,3 +11,8 @@ Enemy::~Enemy()
 {
 	delete(m_bulletGroup);
 }
+
+sf::Sprite * Enemy::GetTexture()
+{
+	return &m_sprite;
+}

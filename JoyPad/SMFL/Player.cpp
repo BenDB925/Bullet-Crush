@@ -11,6 +11,7 @@ const int Player::m_MAXFRAMES = 5;
 const int Player::m_WIDTH = 64;
 const int Player::m_HEIGHT = 78;
 const float Player::m_DEGTORAD = acos(-1) / 180;
+const float Player::m_COLLISIONBOXSIZE = 50;
 
 
 // Default Constructor
@@ -94,6 +95,8 @@ void Player::Update(sf::Time p_deltaTime)
 			m_delay = m_BULLETDELAYTIMER;
 		}
 	}
+
+	m_collisionRect = sf::IntRect(m_position.x - m_COLLISIONBOXSIZE / 2, m_position.y - m_COLLISIONBOXSIZE / 2, m_COLLISIONBOXSIZE, m_COLLISIONBOXSIZE);
 }
 
 
@@ -136,6 +139,11 @@ sf::Sprite Player::getSprite()
 sf::Sprite Player::getTowerSprite(int i)
 {
 	return m_towers.at(i).getSprite();
+}
+
+sf::IntRect Player::GetCollisionBox()
+{
+	return m_collisionRect;
 }
 
 // Setters

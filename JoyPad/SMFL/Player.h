@@ -28,6 +28,8 @@ public:
 	sf::Sprite getTowerSprite(int);
 	void Shoot(int);
 
+	sf::IntRect GetCollisionBox();
+
 private:
 
 
@@ -58,7 +60,9 @@ private:
 	sf::Sprite m_playerBullet;
 	StraightBulletGroup * m_pBulletlist;
 	StraightBulletGroup m_bulletList;
+	sf::IntRect m_collisionRect;
 
+	static const float m_COLLISIONBOXSIZE;
 	static const float m_ANIMTIMER, m_BULLETDELAYTIMER;
 	static const float m_SPEED, m_BULLETSPEED;
 	static const int m_WIDTH, m_HEIGHT, m_MAXFRAMES;

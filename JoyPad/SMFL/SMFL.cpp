@@ -58,7 +58,7 @@ void Init()
 	player = Player(*&m_tex, sf::Vector2f(280, 240));
 	
 	BulletManager::Instance().Init(*&m_tex);
-	EnemyManager::Instance().Init();
+	EnemyManager::Instance().Init(*&m_tex);
 }
 void LoadContent()
 {
@@ -75,7 +75,7 @@ void(UpdateGame())
 {
 	player.Update(deltaTime);
 	BulletManager::Instance().Update(deltaTime, screenDimensions);
-
+	EnemyManager::Instance().Update(player.getPosition());
 }
 void(UpdateGameOver())
 {
@@ -89,6 +89,7 @@ void(DrawMainMenu(sf::RenderWindow &p_window))
 void(DrawGame(sf::RenderWindow &p_window))
 {
 	BulletManager::Instance().Draw(p_window);
+	EnemyManager::Instance().Draw(p_window);
 
 	p_window.draw(player.getSprite());
 	for (int i = 0; i < 2; i++)
