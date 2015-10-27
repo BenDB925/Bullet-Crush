@@ -24,12 +24,14 @@ public:
 	void Update(sf::Time p_deltaTime);
 
 	sf::Vector2f getPosition();
-	std::vector<sf::Sprite> getSprite();
+	sf::Sprite getSprite();
+	sf::Sprite getTowerSprite(int);
 	void Shoot(int);
 
 	sf::IntRect GetCollisionBox();
 
 private:
+
 
 	BulletManager::WeaponType m_weaponType;
 
@@ -43,6 +45,7 @@ private:
 	sf::Vector2f m_position, m_origin, m_velocity;
 	sf::Vector2f m_bulletVel;
 
+	int m_numberOfTowers;
 	int m_currentFrame;
 	int m_bulletGroupIndex;
 
@@ -62,8 +65,7 @@ private:
 	static const float m_COLLISIONBOXSIZE;
 	static const float m_ANIMTIMER, m_BULLETDELAYTIMER;
 	static const float m_SPEED, m_BULLETSPEED;
-	static const int m_WIDTH, m_HEIGHT, m_MAXFRAMES, m_MAXTOWERS;
-	static const float m_DEGTORAD, m_SPREADANGLE;
-
+	static const int m_WIDTH, m_HEIGHT, m_MAXFRAMES;
+	static const float m_DEGTORAD;
 };
 

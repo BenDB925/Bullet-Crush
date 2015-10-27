@@ -18,7 +18,7 @@ float myDistFormula(sf::Vector2f x, sf::Vector2f y)
 
 sf::Vector2f Normalise(sf::Vector2f p_vec)
 {
-	float dist = myDistFormula(sf::Vector2f(0, 0), p_vec);
+	float dist = myDistFormula(sf::Vector2f(0,0), p_vec);
 	p_vec /= dist;
 	return p_vec;
 }
@@ -47,8 +47,8 @@ void HomingEnemy::Update(sf::Vector2f p_playerPos)
 	m_velocity = vecBetweenPlEnem * m_ACCEL;
 	m_position += m_velocity;
 	m_sprite.setPosition(m_position);
-	m_collisionBox = sf::IntRect(m_position.x - m_COLLISIONBOXSIZE / 2,
-		m_position.y - m_COLLISIONBOXSIZE / 2,
-		m_COLLISIONBOXSIZE,
-		m_COLLISIONBOXSIZE);
+	m_collisionBox = sf::IntRect(m_position.x - m_COLLISIONBOXSIZE / 2, 
+								 m_position.y - m_COLLISIONBOXSIZE / 2, 
+								 m_COLLISIONBOXSIZE, 
+								 m_COLLISIONBOXSIZE);
 }

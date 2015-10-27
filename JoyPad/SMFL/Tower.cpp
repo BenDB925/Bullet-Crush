@@ -6,10 +6,7 @@ Tower::Tower()
 {
 }
 
-Tower::Tower(sf::Sprite p_sprite, sf::Vector2f p_pos, bool p_alive):
-m_sprite(p_sprite),
-m_position(p_pos),
-m_alive(p_alive)
+Tower::Tower(sf::Sprite p_sprite, sf::Vector2f p_pos)
 {
 	m_size = 20;
 	m_sprite = p_sprite;
@@ -48,14 +45,4 @@ sf::Vector2f Tower::getOrigin()
 int Tower::getSize()
 {
 	return m_size;
-}
-
-void Tower::setAlive(bool p_alive)
-{
-	m_alive = p_alive;
-}
-
-bool Tower::getAlive()
-{
-	return m_alive;
 }

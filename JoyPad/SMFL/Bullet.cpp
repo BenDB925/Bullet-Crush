@@ -2,33 +2,19 @@
 #include "Bullet.h"
 
 
-const float Bullet::m_RADTODEG = 180 / acos(-1);
-
 Bullet::Bullet()
 {
 }
 
 Bullet::Bullet(sf::Vector2f p_position, sf::Vector2f p_velocity, sf::Texture *&p_tex, sf::IntRect p_texCoords)
 {
-
 	m_position = p_position;
 	m_velocity = p_velocity;
 
 	m_sprite.setTexture(*p_tex);
 	m_sprite.setTextureRect(p_texCoords);
 	m_sprite.setPosition(m_position);
-
 	m_radius = 5;
-
-	// Test Jay was here
-	////////////////////////////
-	m_sprite.setOrigin(m_radius, m_radius);
-	m_position += m_sprite.getOrigin();
-
-	// Magic Numbers to rotate the right way blah blah, need a conversion for rad to deg
-	// 90 for the offset
-	m_sprite.setRotation(atan2(m_velocity.y, m_velocity.x ) * m_RADTODEG + 90);
-
 	//m_circleShape = sf::CircleShape(10, 16);
 	//m_circleShape.setPosition(m_position);
 }
@@ -48,8 +34,6 @@ void Bullet::Update(sf::Time p_deltaTime)
 	m_position += sf::Vector2f(m_velocity.x * p_deltaTime.asSeconds() * 100, m_velocity.y * p_deltaTime.asSeconds() * 100);
 	//m_circleShape.setPosition(m_position);
 	m_sprite.setPosition(m_position);
-	
-
 }
 
 sf::Vector2f Bullet::GetPosition()

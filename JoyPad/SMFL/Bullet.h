@@ -4,9 +4,6 @@
 #include "SFML\System\Time.hpp"
 #include "SFML\Graphics\Sprite.hpp"
 
-
-
-
 class Bullet
 {
 public:
@@ -23,6 +20,5 @@ private:
 	sf::Vector2f m_velocity;
 	int m_radius;
 	sf::Sprite m_sprite;
-	static const float m_RADTODEG;
 };
 

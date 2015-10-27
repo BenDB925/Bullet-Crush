@@ -30,8 +30,10 @@ void CollisionManager::CheckCollisions(sf::IntRect p_playerPos)
 
 	for (int i = 0; i < enemNum; i++)
 	{
-		//sf::IntRect enemRect = EnemyManager::Instance().GetEnemyList()->at(i).GetCollisionBox();
-		//{
-		//}
+		sf::IntRect enemRect = EnemyManager::Instance().GetEnemyList()->at(i).GetCollisionBox();
+		//if ((
+		{
+		}
+
 	}
 }

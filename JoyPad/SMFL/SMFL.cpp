@@ -27,7 +27,6 @@
 #include "BulletManager.h"
 #include "PlControls.h"
 #include "EnemyManager.h"
-#include "Level.h"
 
 
 
@@ -41,9 +40,7 @@ byte gameMode = GAME;
 sf::Clock myClock;
 sf::Time deltaTime;
 Player player;
-Level level;
-sf::Texture m_tex, m_bgTex;
-std::vector<sf::Texture> m_backGroundTex;
+sf::Texture m_tex;
 sf::Vector2f screenDimensions = sf::Vector2f(600, 800);
 int fps = 0;
 std::string x;
@@ -51,9 +48,6 @@ std::string x;
 sf::Font font;
 sf::Text text;
 
-//////////////////
-const byte m_MAXLEVELS = 1;
-//////////////////
 void Init()
 {
 	// Ben Have a look at this, need to pass a ref
@@ -62,25 +56,14 @@ void Init()
 	// get the white box. This is pointer to a ref I think ?????
 	/////////////////////////////////////////////////////
 	player = Player(*&m_tex, sf::Vector2f(280, 240));
-	level = Level(*&m_backGroundTex, screenDimensions);
-
+	
 	BulletManager::Instance().Init(*&m_tex);
 	EnemyManager::Instance().Init(*&m_tex);
 }
 void LoadContent()
 {
-
 	// Check that assets are been loaded
 	m_tex.loadFromFile("sprite.png");
-
-	for (int i = 0; i < m_MAXLEVELS; i++)
-	{
-		std::string text = "Level";
-		text += std::to_string(i);
-		text += ".png";
-		m_bgTex.loadFromFile(text);
-		m_backGroundTex.push_back(m_bgTex);
-	}
 }
 
 // UPDATE GAME MODES
@@ -90,7 +73,6 @@ void(UpdateMainMenu())
 }
 void(UpdateGame())
 {
-	level.Update(deltaTime);
 	player.Update(deltaTime);
 	BulletManager::Instance().Update(deltaTime, screenDimensions);
 	EnemyManager::Instance().Update(player.getPosition());
@@ -106,16 +88,14 @@ void(DrawMainMenu(sf::RenderWindow &p_window))
 }
 void(DrawGame(sf::RenderWindow &p_window))
 {
-	int maxLevelSprites = level.getSprite().size();
-	for (int i = 0; i < maxLevelSprites; i++)
-		p_window.draw(level.getSprite().at(i));
-
 	BulletManager::Instance().Draw(p_window);
 	EnemyManager::Instance().Draw(p_window);
 
-	int maxPlayerSprites = player.getSprite().size();
-	for (int i = 0; i < maxPlayerSprites; i++)
-		p_window.draw(player.getSprite().at(i));
+	p_window.draw(player.getSprite());
+	for (int i = 0; i < 2; i++)
+	{
+		p_window.draw(player.getTowerSprite(i));
+	}
 
 }
 void(DrawGameOver(sf::RenderWindow &p_window))
@@ -163,7 +143,9 @@ void Draw(sf::RenderWindow &p_window)
 
 	// Clear Window
 	p_window.clear();
-
+	x = std::to_string(fps);
+	text.setString(x);
+	p_window.draw(text);
 
 	// Update Draw Modes
 	/////////////////////////////
@@ -179,11 +161,6 @@ void Draw(sf::RenderWindow &p_window)
 		DrawGameOver(p_window);
 		break;
 	}
-	x = std::to_string(fps);
-	text.setString(x);
-	p_window.draw(text);
-
-
 	// Display Window
 	p_window.display();
 }
