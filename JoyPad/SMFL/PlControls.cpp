@@ -3,8 +3,9 @@
 #include "SFML\Window\Joystick.hpp"
 
 
-PlControls::PlControls()
-:m_DEADZONE(15)
+PlControls::PlControls():
+m_DEADZONEA(15),
+m_DEADZONEB(50)
 {
 
 }
@@ -32,15 +33,21 @@ void PlControls::Update(sf::Time p_deltaTime)
 
 	// Updates Left Analog Stick
 	////////////////////////////////
-	if (m_leftAnalogStick.x > m_DEADZONE || m_leftAnalogStick.x < -m_DEADZONE || m_leftAnalogStick.y > m_DEADZONE || m_leftAnalogStick.y < -m_DEADZONE)
+	if (m_leftAnalogStick.x > m_DEADZONEA || m_leftAnalogStick.x < -m_DEADZONEA || m_leftAnalogStick.y > m_DEADZONEA || m_leftAnalogStick.y < -m_DEADZONEA)
+	{
 		m_leftStickEnabled = true;
+		m_leftAnalogAngle = atan2(m_leftAnalogStick.y, m_leftAnalogStick.x);
+	}
 	else
 		m_leftStickEnabled = false;
 
 	// Updates Right Analog Stick
 	////////////////////////////////
-	if (m_rightAnalogStick.x > m_DEADZONE || m_rightAnalogStick.x < -m_DEADZONE || m_rightAnalogStick.y > m_DEADZONE || m_rightAnalogStick.y < -m_DEADZONE)
+	if (m_rightAnalogStick.x > m_DEADZONEB || m_rightAnalogStick.x < -m_DEADZONEB || m_rightAnalogStick.y > m_DEADZONEB || m_rightAnalogStick.y < -m_DEADZONEB)
+	{
 		m_rightStickEnabled = true;
+		m_rightAnalogAngle = atan2(m_rightAnalogStick.y, m_rightAnalogStick.x);
+	}
 	else
 		m_rightStickEnabled = false;
 }

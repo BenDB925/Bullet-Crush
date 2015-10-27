@@ -89,6 +89,7 @@
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="ExplosionBulletPattern.h" />
     <ClInclude Include="HomingEnemy.h" />
+    <ClInclude Include="Level.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlControls.h" />
     <ClInclude Include="SpiralBulletPattern.h" />
@@ -106,6 +107,7 @@
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="ExplosionBulletPattern.cpp" />
     <ClCompile Include="HomingEnemy.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlControls.cpp" />
     <ClCompile Include="SMFL.cpp" />
