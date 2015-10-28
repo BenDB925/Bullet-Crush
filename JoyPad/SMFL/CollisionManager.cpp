@@ -88,7 +88,7 @@ void CollisionManager::PlBulletEnemy()
 
 	for (int i = 0; i < shouldSkipEnemy.size(); i++)
 	{
-		int index = shouldSkipBullet.at(i);
+		int index = shouldSkipEnemy.at(i);
 		if (index < EnemyManager::Instance().GetEnemyList()->size())
 			EnemyManager::Instance().GetEnemyList()->erase(EnemyManager::Instance().GetEnemyList()->begin() + index);
 	}
