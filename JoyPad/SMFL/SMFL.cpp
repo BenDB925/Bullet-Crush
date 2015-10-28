@@ -29,6 +29,7 @@
 #include "EnemyManager.h"
 #include "Level.h"
 #include "CollisionManager.h"
+#include "UI.h"
 
 
 
@@ -47,7 +48,6 @@ sf::Texture m_tex, m_bgTex;
 std::vector<sf::Texture> m_backGroundTex;
 sf::Vector2f screenDimensions = sf::Vector2f(600, 800);
 int fps = 0;
-std::string x;
 
 sf::Font font;
 sf::Text text;
@@ -64,6 +64,7 @@ void Init()
 	/////////////////////////////////////////////////////
 	player = Player(*&m_tex, sf::Vector2f(280, 240));
 	level = Level(*&m_backGroundTex, screenDimensions);
+	UI::Instance().Init(*&m_tex);
 
 	BulletManager::Instance().Init(*&m_tex);
 	EnemyManager::Instance().Init(*&m_tex);
@@ -119,6 +120,7 @@ void(DrawGame(sf::RenderWindow &p_window))
 	int maxPlayerSprites = player.getSprite().size();
 	for (int i = 0; i < maxPlayerSprites; i++)
 		p_window.draw(player.getSprite().at(i));
+	p_window.draw(UI::Instance().getSprite());
 
 }
 void(DrawGameOver(sf::RenderWindow &p_window))
@@ -159,11 +161,6 @@ void Update()
 /////////////////////////////
 void Draw(sf::RenderWindow &p_window)
 {
-
-
-
-
-
 	// Clear Window
 	p_window.clear();
 
@@ -182,10 +179,6 @@ void Draw(sf::RenderWindow &p_window)
 		DrawGameOver(p_window);
 		break;
 	}
-	x = std::to_string(fps);
-	text.setString(x);
-	p_window.draw(text);
-
 
 	// Display Window
 	p_window.display();
@@ -199,7 +192,6 @@ int main()
 
 	// Create the main window 
 	sf::RenderWindow window(sf::VideoMode(screenDimensions.x, screenDimensions.y, 32), "SFML First Program");
-	
 	//load a font
 	font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
 	text.setFont(font);
