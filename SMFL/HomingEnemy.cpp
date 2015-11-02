@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "HomingEnemy.h"
 
-const float HomingEnemy::m_ACCEL = 0.05;
+const float HomingEnemy::m_ACCEL = 0.00001;
+const float HomingEnemy::m_MAX_SPEED = 0.0005;
 const float HomingEnemy::m_COLLISIONBOXSIZE = 50;
 
 float myDistFormula(sf::Vector2f x, sf::Vector2f y)
@@ -44,7 +45,8 @@ void HomingEnemy::Update(sf::Vector2f p_playerPos, float p_dt)
 {
 	sf::Vector2f vecBetweenPlEnem = p_playerPos - m_position;
 	vecBetweenPlEnem = Normalise(vecBetweenPlEnem);
-	m_velocity = vecBetweenPlEnem * m_ACCEL;
+	if (m_velocity.x < m_MAX_SPEED && m_velocity.y < m_MAX_SPEED)
+		m_velocity += vecBetweenPlEnem * m_ACCEL;
 	m_position += m_velocity * p_dt;
 	m_sprite.setPosition(m_position);
 	m_collisionBox = sf::IntRect(m_position.x - m_COLLISIONBOXSIZE / 2,

@@ -11,5 +11,6 @@ public:
 private:
 	static const float m_ACCEL;
 	static const float m_COLLISIONBOXSIZE;
+	static const float m_MAX_SPEED;
 };
 

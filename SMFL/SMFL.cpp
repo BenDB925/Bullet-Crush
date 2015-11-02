@@ -48,7 +48,6 @@ sf::Texture m_tex, m_bgTex;
 std::vector<sf::Texture> m_backGroundTex;
 sf::Vector2f screenDimensions = sf::Vector2f(600, 800);
 int fps = 0;
-
 sf::Font font;
 sf::Text text;
 
@@ -96,7 +95,7 @@ void(UpdateGame())
 	level.Update(deltaTime);
 	player.Update(deltaTime);
 	BulletManager::Instance().Update(deltaTime, screenDimensions);
-	EnemyManager::Instance().Update(player.getPosition(), deltaTime.asMilliseconds());
+	EnemyManager::Instance().Update(player.getPosition(), deltaTime.asMicroseconds(), screenDimensions);
 	CollisionManager::Instance().CheckCollisions(player.GetCollisionBox());
 }
 void(UpdateGameOver())
