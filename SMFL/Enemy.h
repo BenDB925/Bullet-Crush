@@ -12,7 +12,7 @@ public:
 	virtual void Init() = 0;
 	virtual void Update(sf::Vector2f p_playerPos, float p_dt) = 0;
 
-	sf::Sprite * Enemy::GetTexture();
+	sf::Sprite * GetTexture();
 	sf::IntRect GetCollisionBox() { return m_collisionBox; }
 	void SetPosition(sf::Vector2f p_pos);
 	bool CheckOffScreen(sf::Vector2f p_screenDimensions);

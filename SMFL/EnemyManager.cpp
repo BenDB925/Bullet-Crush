@@ -39,7 +39,7 @@ void EnemyManager::Update(sf::Vector2f p_playerPos, float p_dt, sf::Vector2f p_s
 		{
 			for (int j = 0; j < 2; j++)
 			{
-				AddSlowShootyEnem(sf::Vector2f(i * 100, -100 - (j * 50)));
+				AddSlowShootyEnem(sf::Vector2f(sf::Vector2f(rand() % (int)p_screenDimensions.x, -100 - (j * 50))));
 			}
 		}
 	}
@@ -52,7 +52,7 @@ void EnemyManager::Update(sf::Vector2f p_playerPos, float p_dt, sf::Vector2f p_s
 		{
 			for (int j = 0; j < 5; j++)
 			{
-				AddHomingEnem(sf::Vector2f(i * 100, -100 - (j * 50)));
+				AddHomingEnem(sf::Vector2f(rand() % (int)p_screenDimensions.x, -100 - (j * 50)));
 			}
 		}
 	}

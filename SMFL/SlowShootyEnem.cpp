@@ -14,7 +14,7 @@ SlowShootyEnem::SlowShootyEnem(sf::Vector2f p_position, sf::Texture * p_tex, sf:
 	m_sprite.setTextureRect(p_texRect);
 	m_position = p_position;
 	m_sprite.setPosition(m_position);
-	m_shotTimer = (std::rand() % 1000) / 1000;
+	m_shotTimer = std::rand() % (int)m_TIME_BETWEEN_SHOTS;
 	m_bulletGroup = new StraightBulletGroup();
 	BulletManager::Instance().AddBulletGroup(m_bulletGroup);
 }
@@ -51,7 +51,6 @@ void SlowShootyEnem::Update(sf::Vector2f p_playerPos, float p_dt)
 
 void SlowShootyEnem::Shoot()
 {
-
 	sf::Vector2f direction = sf::Vector2f(0,1);
 	sf::Vector2f origin = sf::Vector2f(m_position.x + m_collisionBox.width / 3, m_position.y + m_collisionBox.height + 12);
 	BulletManager::Instance().AddStraight(m_bulletGroup, origin, m_BULLET_SPEED, direction);

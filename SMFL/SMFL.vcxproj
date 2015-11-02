@@ -81,6 +81,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Boss.h" />
+    <ClInclude Include="BossTower.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletGroup.h" />
     <ClInclude Include="BulletManager.h" />
@@ -99,8 +101,11 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Tower.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="WeakSpot.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="BossTower.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletGroup.cpp" />
     <ClCompile Include="BulletManager.cpp" />
@@ -122,6 +127,7 @@
     <ClCompile Include="StraightBulletGroup.cpp" />
     <ClCompile Include="Tower.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="WeakSpot.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
