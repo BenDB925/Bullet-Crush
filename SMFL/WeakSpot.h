@@ -11,5 +11,6 @@ public:
 	void Update(sf::Vector2f p_playerPos, float p_dt);
 	void UpdatePosition(sf::Vector2f p_distMoved);
 	sf::Sprite * GetTexture();
+	void RemoveVars(){};
 };
 

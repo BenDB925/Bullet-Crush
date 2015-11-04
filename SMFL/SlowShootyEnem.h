@@ -8,6 +8,7 @@ public:
 	~SlowShootyEnem();
 	void Init();
 	void Update(sf::Vector2f p_playerPos, float p_dt);
+	void RemoveVars();
 
 private:
 	void Shoot();
@@ -19,6 +20,5 @@ private:
 	static const float m_TIME_BETWEEN_SHOTS;
 	float m_shotTimer;
 	StraightBulletGroup *m_bulletGroup;
-
 };
 

@@ -7,6 +7,7 @@ public:
 	~HomingEnemy();
 	void Init();
 	void Update(sf::Vector2f p_playerPos, float p_dt);
+	void RemoveVars(){};
 
 private:
 	static const float m_ACCEL;

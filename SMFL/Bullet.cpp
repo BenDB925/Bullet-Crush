@@ -8,7 +8,7 @@ Bullet::Bullet()
 {
 }
 
-Bullet::Bullet(sf::Vector2f p_position, sf::Vector2f p_velocity, sf::Texture *&p_tex, sf::IntRect p_texCoords)
+Bullet::Bullet(sf::Vector2f p_position, sf::Vector2f p_velocity, sf::Texture *&p_tex, sf::IntRect p_texCoords, int p_radius)
 {
 
 	m_position = p_position;
@@ -18,10 +18,8 @@ Bullet::Bullet(sf::Vector2f p_position, sf::Vector2f p_velocity, sf::Texture *&p
 	m_sprite.setTextureRect(p_texCoords);
 	m_sprite.setPosition(m_position);
 
-	m_radius = 5;
+	m_radius = p_radius;
 
-	// Test Jay was here
-	////////////////////////////
 	m_sprite.setOrigin(m_radius, m_radius);
 	m_position += m_sprite.getOrigin();
 
@@ -29,8 +27,6 @@ Bullet::Bullet(sf::Vector2f p_position, sf::Vector2f p_velocity, sf::Texture *&p
 	// 90 for the offset
 	m_sprite.setRotation(atan2(m_velocity.y, m_velocity.x ) * m_RADTODEG + 90);
 
-	//m_circleShape = sf::CircleShape(10, 16);
-	//m_circleShape.setPosition(m_position);
 }
 
 

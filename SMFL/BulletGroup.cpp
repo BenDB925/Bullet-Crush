@@ -35,5 +35,5 @@ float BulletGroup::GetRadius()
 
 bool BulletGroup::ShouldBeDestroyed()
 {
-	return m_shouldBeDestroyed;
+	return (m_bulletList.size() == 0);
 }

@@ -2,6 +2,7 @@
 #include <vector>
 #include "Enemy.h"
 #include "SFML\Graphics\RenderWindow.hpp"
+#include "Boss.h"
 
 class EnemyManager
 {
@@ -16,17 +17,23 @@ public:
 
 private:
 	std::vector<Enemy*> m_enemyList;
+	Boss m_boss;
 	sf::Texture *m_textureAtlas;
 
 	sf::IntRect m_HOMING_ENEM_COORDS;
 	sf::IntRect m_SLOW_SHOOTY_ENEM_COORDS;
 
+	void ManageEnemySpawning(sf::Vector2f p_screenDimensions);
+
 	void AddHomingEnem(sf::Vector2f p_position);
 	void AddSlowShootyEnem(sf::Vector2f p_position);
 
+	void AddHomingWave(sf::Vector2f p_screenDimensions);
+	void AddSlowWave(sf::Vector2f p_screenDimensions);
+
 	//Enemy timer shit
 	const float m_TIME_BETWEEN_HOMING_WAVES = 200;
-	const float m_TIME_BETWEEN_SLOW_WAVES = 60;
+	const float m_TIME_BETWEEN_SLOW_WAVES = 50;
 	float m_waveTimer = 0;
 };
 

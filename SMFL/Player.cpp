@@ -4,7 +4,7 @@
 
 const float Player::m_ANIMTIMER = 30000;
 const float Player::m_BULLETDELAYTIMER = 80000;
-const float Player::m_SPEED = 3;
+const float Player::m_SPEED = 0.000005;
 const float Player::m_BULLETSPEED = 3;
 const float Player::m_DEGTORAD = acos(-1) / 180;
 const float Player::m_SPREADANGLE = 10;
@@ -28,7 +28,7 @@ m_position(p_pos),
 m_delay(0),
 m_currentFrame(0),
 m_counterForAnim(0),
-m_weaponType(BulletManager::WeaponType::SPREAD)
+m_weaponType(BulletManager::WeaponType::LAZER)
 {
 
 	m_origin = sf::Vector2f(m_position.x + m_WIDTH * 0.5f, m_position.y + m_HEIGHT * 0.5f);
@@ -54,13 +54,13 @@ Player::~Player()
 {
 }
 
-void Player::Update(sf::Time p_deltaTime)
+void Player::Update(float p_deltaTime)
 {
 
 	// Animate my Helicopter
 	////////////////////////////
-	m_counterForAnim += p_deltaTime.asMicroseconds();
-	m_delay -= p_deltaTime.asMicroseconds();
+	m_counterForAnim += p_deltaTime;
+	m_delay -= p_deltaTime;
 
 	if (m_counterForAnim > m_ANIMTIMER)
 	{
@@ -78,11 +78,11 @@ void Player::Update(sf::Time p_deltaTime)
 	/////////////////////////////////////////////
 	if (PlControls::Instance().m_leftStickEnabled)
 	{
-		m_velocity = PlControls::Instance().GetLeftStickAxis() * m_SPEED * p_deltaTime.asSeconds();
+		m_velocity = PlControls::Instance().GetLeftStickAxis() * m_SPEED * p_deltaTime;
 		m_position += m_velocity;
 		m_playerSprite.setPosition(m_position);
 		m_origin = sf::Vector2f(m_position.x + m_WIDTH * 0.5f, m_position.y + m_HEIGHT * 0.5f);
-		
+
 		for (int towerNo = 0; towerNo < m_MAXTOWERS; towerNo++)
 		{
 			if (m_towers.at(towerNo).getAlive())
@@ -96,8 +96,8 @@ void Player::Update(sf::Time p_deltaTime)
 		if (m_delay <= 0)
 		{
 			for (int towerNo = 0; towerNo < m_MAXTOWERS; towerNo++)
-				if (m_towers.at(towerNo).getAlive())
-					Shoot(towerNo);
+			if (m_towers.at(towerNo).getAlive())
+				Shoot(towerNo);
 			m_delay = m_BULLETDELAYTIMER;
 		}
 	}
@@ -159,8 +159,8 @@ std::vector<sf::Sprite> Player::getSprite()
 	std::vector<sf::Sprite> sprites;
 	sprites.push_back(m_playerSprite);
 	for (int i = 0; i < m_MAXTOWERS; i++)
-		if (m_towers.at(i).getAlive())
-			sprites.push_back(m_towers.at(i).getSprite());
+	if (m_towers.at(i).getAlive())
+		sprites.push_back(m_towers.at(i).getSprite());
 
 	return sprites;
 }

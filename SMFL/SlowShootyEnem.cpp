@@ -16,13 +16,13 @@ SlowShootyEnem::SlowShootyEnem(sf::Vector2f p_position, sf::Texture * p_tex, sf:
 	m_sprite.setPosition(m_position);
 	m_shotTimer = std::rand() % (int)m_TIME_BETWEEN_SHOTS;
 	m_bulletGroup = new StraightBulletGroup();
-	BulletManager::Instance().AddBulletGroup(m_bulletGroup);
+	BulletManager::Instance().AddBulletGroup(*m_bulletGroup);
 }
 
 
 SlowShootyEnem::~SlowShootyEnem()
 {
-	delete m_bulletGroup;
+
 }
 
 void SlowShootyEnem::Init()
@@ -42,7 +42,7 @@ void SlowShootyEnem::Update(sf::Vector2f p_playerPos, float p_dt)
 		m_COLLISIONBOXSIZE);
 
 	m_shotTimer += p_dt;
-	if (m_shotTimer > m_TIME_BETWEEN_SHOTS)
+	if (m_shotTimer > m_TIME_BETWEEN_SHOTS && m_aliveState == Enemy::AliveState::IS_ALIVE)
 	{
 		m_shotTimer = 0;
 		Shoot();
@@ -54,4 +54,9 @@ void SlowShootyEnem::Shoot()
 	sf::Vector2f direction = sf::Vector2f(0,1);
 	sf::Vector2f origin = sf::Vector2f(m_position.x + m_collisionBox.width / 3, m_position.y + m_collisionBox.height + 12);
 	BulletManager::Instance().AddStraight(m_bulletGroup, origin, m_BULLET_SPEED, direction);
+}
+
+void SlowShootyEnem::RemoveVars()
+{
+	BulletManager::Instance().RemoveBulletGroup(m_bulletGroup);
 }

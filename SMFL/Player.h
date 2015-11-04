@@ -21,7 +21,7 @@ public:
 	Player(sf::Texture&, sf::Vector2f p_pos);
 
 
-	void Update(sf::Time p_deltaTime);
+	void Update(float p_deltaTime);
 
 	sf::Vector2f getPosition();
 	std::vector<sf::Sprite> getSprite();
@@ -55,6 +55,7 @@ private:
 	sf::IntRect m_spriteRect;
 	sf::Sprite m_playerSprite;
 	sf::Sprite m_playerBullet;
+	sf::Sprite m_playerLaser;
 	StraightBulletGroup * m_pBulletlist;
 	StraightBulletGroup m_bulletList;
 	sf::IntRect m_collisionRect;

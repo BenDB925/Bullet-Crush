@@ -35,8 +35,6 @@ void BulletManager::Update(sf::Time p_deltaTime, sf::Vector2f p_screenDimensions
 	{
 		if (m_bulletGroups.at(i)->m_bulletList.size() > 0)
 			m_bulletGroups.at(i)->Update(p_deltaTime, p_screenDimensions);
-		//else if (m_bulletGroups.at(i).ShouldBeDestroyed() == true)
-			//m_bulletGroups.erase(m_bulletGroups.begin() + i);
 	}
 	m_playerBullets.Update(p_deltaTime, p_screenDimensions);
 }
@@ -74,9 +72,9 @@ void BulletManager::AddExplosion(sf::Vector2f p_point, int p_numColumns)
 	m_bulletGroups.push_back(&ExplosionBulletPattern(p_point, p_numColumns, 50, 4, m_pTextureAtlas, m_SPIRAL_TEX_COORDS));
 }
 
-void BulletManager::AddStraight(StraightBulletGroup *p_pattern, sf::Vector2f p_position, float p_velocity, sf::Vector2f p_direction)
+int BulletManager::AddStraight(StraightBulletGroup *p_pattern, sf::Vector2f p_position, float p_velocity, sf::Vector2f p_direction)
 {
-	p_pattern->AddBullet(p_position, p_velocity, p_direction, m_pTextureAtlas, m_BLASTER_TEX_COORDS);
+	return int(p_pattern->AddBullet(p_position, p_velocity, p_direction, m_pTextureAtlas, m_BLASTER_TEX_COORDS));
 }
 
 void BulletManager::PlayerFireBullet(sf::Vector2f p_position, float p_velocity, sf::Vector2f p_direction, BulletManager::WeaponType p_weaponType)
@@ -99,8 +97,20 @@ StraightBulletGroup * BulletManager::GetPlBulletList()
 	return &m_playerBullets;
 }
 
-void BulletManager::AddBulletGroup(BulletGroup * p_group)
+int BulletManager::AddBulletGroup(BulletGroup & p_group)
 {
-	m_bulletGroups.push_back(p_group);
+	m_bulletGroups.push_back(&p_group);
+	return (int)m_bulletGroups.size() - 1;
+}
+
+void BulletManager::RemoveBulletGroup(BulletGroup * p_group)
+{
+	for (int i = 0; i < m_bulletGroups.size(); i++)
+	{
+		if (*&m_bulletGroups.at(i) == *&p_group)
+		{
+			m_bulletGroups.erase(m_bulletGroups.begin() + i);
+		}
+	}
 }
 

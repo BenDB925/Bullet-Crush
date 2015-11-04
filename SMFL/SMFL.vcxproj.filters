@@ -54,9 +54,6 @@
     <ClInclude Include="SpiralBulletPattern.h">
       <Filter>Header Files\Bullets</Filter>
     </ClInclude>
-    <ClInclude Include="StraightBullet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PlControls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -92,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="WeakSpot.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StraightBulletGroup.h">
+      <Filter>Header Files\Bullets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

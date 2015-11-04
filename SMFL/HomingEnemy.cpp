@@ -54,3 +54,4 @@ void HomingEnemy::Update(sf::Vector2f p_playerPos, float p_dt)
 		m_COLLISIONBOXSIZE,
 		m_COLLISIONBOXSIZE);
 }
+

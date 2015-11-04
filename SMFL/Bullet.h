@@ -11,7 +11,7 @@ class Bullet
 {
 public:
 	Bullet();
-	Bullet(sf::Vector2f p_position, sf::Vector2f p_velocity, sf::Texture *&p_tex, sf::IntRect p_texCoords);
+	Bullet(sf::Vector2f p_position, sf::Vector2f p_velocity, sf::Texture *&p_tex, sf::IntRect p_texCoords, int p_radius = 5);
 	~Bullet();
 	void Update(sf::Time p_deltaTime);
 

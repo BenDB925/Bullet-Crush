@@ -26,11 +26,13 @@ public:
 	void Draw(sf::RenderWindow &p_window);
 	void AddSpiral(sf::Vector2f p_point, int p_numColumns, bool p_shouldGoClockwise);
 	void AddExplosion(sf::Vector2f p_point, int p_numColumns);
-	void AddStraight(StraightBulletGroup *p_pattern, sf::Vector2f p_position, float p_velocity, sf::Vector2f p_direction);
+	int AddStraight(StraightBulletGroup *p_pattern, sf::Vector2f p_position, float p_velocity, sf::Vector2f p_direction);
 	void PlayerFireBullet(sf::Vector2f p_position, float p_velocity, sf::Vector2f p_direction, BulletManager::WeaponType p_weaponType);
 	std::vector<BulletGroup*> *GetBulletList();
 	StraightBulletGroup * GetPlBulletList();
-	void AddBulletGroup(BulletGroup * p_group);
+	int AddBulletGroup(BulletGroup & p_group);
+
+	void RemoveBulletGroup(BulletGroup *  p_group);
 
 	static BulletManager& Instance();
 

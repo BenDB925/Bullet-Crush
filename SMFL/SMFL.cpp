@@ -92,8 +92,8 @@ void(UpdateMainMenu())
 }
 void(UpdateGame())
 {
-	level.Update(deltaTime);
-	player.Update(deltaTime);
+	level.Update(deltaTime.asMicroseconds());
+	player.Update(deltaTime.asMicroseconds());
 	BulletManager::Instance().Update(deltaTime, screenDimensions);
 	EnemyManager::Instance().Update(player.getPosition(), deltaTime.asMicroseconds(), screenDimensions);
 	CollisionManager::Instance().CheckCollisions(player.GetCollisionBox());
@@ -109,9 +109,7 @@ void(DrawMainMenu(sf::RenderWindow &p_window))
 }
 void(DrawGame(sf::RenderWindow &p_window))
 {
-	int maxLevelSprites = level.getSprite().size();
-	for (int i = 0; i < maxLevelSprites; i++)
-		p_window.draw(level.getSprite().at(i));
+		p_window.draw(level.getSprite());
 
 	BulletManager::Instance().Draw(p_window);
 	EnemyManager::Instance().Draw(p_window);
