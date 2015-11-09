@@ -7,14 +7,13 @@ const int Enemy::m_EXPSIZE = 40;
 const int Enemy::m_TEXOFFSETY = 156;
 
 Enemy::Enemy() : 
-m_aliveState(Enemy::AliveState::IS_ALIVE)
+m_aliveState(Enemy::AliveState::IS_ALIVE), m_currentFrame(0), m_counterForAnim(0)
 {
 }
 
 
 Enemy::~Enemy()
 {
-	delete(m_bulletGroup);
 }
 
 sf::Sprite * Enemy::GetTexture()

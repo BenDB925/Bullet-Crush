@@ -25,7 +25,7 @@ SlowShootyEnem::SlowShootyEnem(sf::Vector2f p_position, sf::Texture * p_tex, sf:
 
 SlowShootyEnem::~SlowShootyEnem()
 {
-
+	delete m_bulletGroup;
 }
 
 void SlowShootyEnem::Init()

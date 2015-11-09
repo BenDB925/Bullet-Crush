@@ -111,8 +111,8 @@ void(DrawGame(sf::RenderWindow &p_window))
 {
 		p_window.draw(level.getSprite());
 
-	BulletManager::Instance().Draw(p_window);
-	EnemyManager::Instance().Draw(p_window);
+		EnemyManager::Instance().Draw(p_window);
+		BulletManager::Instance().Draw(p_window);
 
 	int maxPlayerSprites = player.getSprite().size();
 	for (int i = 0; i < maxPlayerSprites; i++)

@@ -20,10 +20,11 @@ private:
 	Boss m_boss;
 	sf::Texture *m_textureAtlas;
 
-	sf::IntRect m_HOMING_ENEM_COORDS;
-	sf::IntRect m_SLOW_SHOOTY_ENEM_COORDS;
+	static const sf::IntRect m_HOMING_ENEM_COORDS;
+	static const sf::IntRect m_SLOW_SHOOTY_ENEM_COORDS;
+	static const sf::IntRect m_BOSS_COORDS;
 
-	void ManageEnemySpawning(sf::Vector2f p_screenDimensions);
+	void ManageEnemySpawning(sf::Vector2f p_screenDimensions, sf::Vector2f p_playerPos, float p_dt);
 
 	void AddHomingEnem(sf::Vector2f p_position);
 	void AddSlowShootyEnem(sf::Vector2f p_position);
@@ -35,5 +36,7 @@ private:
 	const float m_TIME_BETWEEN_HOMING_WAVES = 150;
 	const float m_TIME_BETWEEN_SLOW_WAVES = 70;
 	float m_waveTimer = 0;
+	const int m_NUM_WAVES_BETWEEN_BOSS = 3;
+	int m_waveCounter = 15;
 };
 

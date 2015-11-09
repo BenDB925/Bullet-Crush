@@ -16,7 +16,6 @@ public:
 
 private:
 	void Shoot(sf::Vector2f p_playerPos);
-
 	StraightBulletGroup * m_bulletGroup;
 
 	float m_shotTimer;

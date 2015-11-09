@@ -35,8 +35,6 @@ void BulletManager::Update(sf::Time p_deltaTime, sf::Vector2f p_screenDimensions
 	{
 		if (m_bulletGroups.at(i)->m_bulletList.size() > 0)
 			m_bulletGroups.at(i)->Update(p_deltaTime, p_screenDimensions);
-
-
 	}
 
 	for (int i = 0; i < m_bulletGroups.size(); i++)
@@ -71,13 +69,14 @@ BulletManager &BulletManager::Instance()
 
 void BulletManager::AddSpiral(sf::Vector2f p_point, int p_numColumns, bool p_shouldGoClockwise)
 {
-
-	m_bulletGroups.push_back(&SpiralBulletPattern(p_point, p_shouldGoClockwise, p_numColumns, 50, 0.1, m_pTextureAtlas, m_SPIRAL_TEX_COORDS));
+	SpiralBulletPattern * temp = new SpiralBulletPattern(p_point, p_shouldGoClockwise, p_numColumns, 50, 0.1, m_pTextureAtlas, m_SPIRAL_TEX_COORDS);
+	m_bulletGroups.push_back(temp);
+	int j = 0;
 }
 
 void BulletManager::AddExplosion(sf::Vector2f p_point, int p_numColumns)
 {
-	m_bulletGroups.push_back(&ExplosionBulletPattern(p_point, p_numColumns, 50, 4, m_pTextureAtlas, m_SPIRAL_TEX_COORDS));
+	m_bulletGroups.push_back(new ExplosionBulletPattern(p_point, p_numColumns, 50, 4, m_pTextureAtlas, m_SPIRAL_TEX_COORDS));
 }
 
 int BulletManager::AddStraight(StraightBulletGroup *p_pattern, sf::Vector2f p_position, float p_velocity, sf::Vector2f p_direction)

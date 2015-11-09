@@ -27,7 +27,8 @@ SpiralBulletPattern::SpiralBulletPattern(sf::Vector2f p_position, bool p_shouldG
 
 	for (int i = 0; i < p_numColumns; i++)
 	{
-		float currAng = i * M_PI * 2 / p_numColumns;
+		float randNum = rand() % 1000;
+		float currAng = i * M_PI * 2 / p_numColumns + (randNum / 1000);
 
 		sf::Vector2f pointOnCircle = sf::Vector2f(cos(currAng) * m_bulletRadius, sin(currAng) * m_bulletRadius);
 		sf::Vector2f velDir = sf::Vector2f(pointOnCircle.y * -1, pointOnCircle.x);
@@ -44,6 +45,8 @@ SpiralBulletPattern::SpiralBulletPattern(sf::Vector2f p_position, bool p_shouldG
 
 		m_bulletList.push_back(Bullet(pointOnCircle, vel, p_tex, p_texCoords));
 	}
+
+	int j = 0;
 }
 
 

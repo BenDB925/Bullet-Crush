@@ -35,7 +35,6 @@ protected:
 	sf::Vector2f m_position;
 	sf::Vector2f m_velocity;
 	sf::Sprite m_sprite;
-	BulletGroup * m_bulletGroup;
 	int m_health;
 
 	sf::IntRect m_collisionBox;
