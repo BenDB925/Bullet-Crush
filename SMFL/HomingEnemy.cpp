@@ -49,9 +49,6 @@ void HomingEnemy::Update(sf::Vector2f p_playerPos, float p_dt)
 		m_velocity += vecBetweenPlEnem * m_ACCEL;
 	m_position += m_velocity * p_dt;
 	m_sprite.setPosition(m_position);
-	m_collisionBox = sf::IntRect(m_position.x - m_COLLISIONBOXSIZE / 2,
-		m_position.y - m_COLLISIONBOXSIZE / 2,
-		m_COLLISIONBOXSIZE,
-		m_COLLISIONBOXSIZE);
+	m_collisionBox = sf::IntRect(m_position.x + 24, m_position.y, 58, 50);
 }
 

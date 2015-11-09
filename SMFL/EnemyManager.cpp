@@ -88,9 +88,9 @@ void EnemyManager::AddHomingWave(sf::Vector2f p_screenDimensions)
 	{
 		m_waveTimer = 0;
 		hasHomingSpawned = false;
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 1; i++)
 		{
-			for (int j = 0; j < 5; j++)
+			for (int j = 0; j < 1; j++)
 			{
 				AddHomingEnem(sf::Vector2f(rand() % (int)p_screenDimensions.x, -100 - (j * 50)));
 			}
@@ -103,9 +103,9 @@ void EnemyManager::AddSlowWave(sf::Vector2f p_screenDimensions)
 	if (m_waveTimer > m_TIME_BETWEEN_SLOW_WAVES && !hasHomingSpawned)
 	{
 		hasHomingSpawned = true;
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 1; i++)
 		{
-			for (int j = 0; j < 2; j++)
+			for (int j = 0; j < 1; j++)
 			{
 				AddSlowShootyEnem(sf::Vector2f(sf::Vector2f(rand() % (int)p_screenDimensions.x, -100 - (j * 50))));
 			}

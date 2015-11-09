@@ -23,9 +23,8 @@ Bullet::Bullet(sf::Vector2f p_position, sf::Vector2f p_velocity, sf::Texture *&p
 	m_sprite.setOrigin(m_radius, m_radius);
 	m_position += m_sprite.getOrigin();
 
-	// Magic Numbers to rotate the right way blah blah, need a conversion for rad to deg
-	// 90 for the offset
-	m_sprite.setRotation(atan2(m_velocity.y, m_velocity.x ) * m_RADTODEG + 90);
+	//Magic Numbers to rotate the right way blah blah, need a conversion for rad to deg90 for the offset
+	m_sprite.setRotation(atan2(m_velocity.y, m_velocity.x) * m_RADTODEG + 90);
 
 }
 

@@ -92,7 +92,7 @@ void(UpdateMainMenu())
 }
 void(UpdateGame())
 {
-	level.Update(deltaTime.asMicroseconds());
+	level.Update(deltaTime.asSeconds());
 	player.Update(deltaTime.asMicroseconds());
 	BulletManager::Instance().Update(deltaTime, screenDimensions);
 	EnemyManager::Instance().Update(player.getPosition(), deltaTime.asMicroseconds(), screenDimensions);

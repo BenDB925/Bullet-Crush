@@ -59,8 +59,8 @@ bool Enemy::UpdateAnim(float p_dt)
 			if (m_currentFrame > m_MAXEXPFRAMES)
 				m_aliveState = Enemy::AliveState::IS_DEAD;
 		}
-		m_collisionBox = sf::IntRect(m_EXPSIZE * m_currentFrame, m_TEXOFFSETY, m_EXPSIZE, m_EXPSIZE);
-		m_sprite.setTextureRect(m_collisionBox);
+		m_animBox = sf::IntRect(m_EXPSIZE * m_currentFrame, m_TEXOFFSETY, m_EXPSIZE, m_EXPSIZE);
+		m_sprite.setTextureRect(m_animBox);
 		return true;
 	}
 	else if (m_aliveState == Enemy::AliveState::IS_DEAD)

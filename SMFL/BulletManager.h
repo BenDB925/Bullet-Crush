@@ -27,7 +27,7 @@ public:
 	void AddSpiral(sf::Vector2f p_point, int p_numColumns, bool p_shouldGoClockwise);
 	void AddExplosion(sf::Vector2f p_point, int p_numColumns);
 	int AddStraight(StraightBulletGroup *p_pattern, sf::Vector2f p_position, float p_velocity, sf::Vector2f p_direction);
-	void PlayerFireBullet(sf::Vector2f p_position, float p_velocity, sf::Vector2f p_direction, BulletManager::WeaponType p_weaponType);
+	void PlayerFireBullet(sf::Vector2f p_position, float p_velocity, sf::Vector2f p_direction, BulletManager::WeaponType p_weaponType, int p_radius);
 	std::vector<BulletGroup*> *GetBulletList();
 	StraightBulletGroup * GetPlBulletList();
 	int AddBulletGroup(BulletGroup & p_group);

@@ -5,7 +5,7 @@
 const float Player::m_ANIMTIMER = 30000;
 const float Player::m_BULLETDELAYTIMER = 80000;
 const float Player::m_SPEED = 0.000005;
-const float Player::m_BULLETSPEED = 3;
+const float Player::m_BULLETSPEED = 2.1;
 const float Player::m_DEGTORAD = acos(-1) / 180;
 const float Player::m_SPREADANGLE = 10;
 
@@ -28,7 +28,7 @@ m_position(p_pos),
 m_delay(0),
 m_currentFrame(0),
 m_counterForAnim(0),
-m_weaponType(BulletManager::WeaponType::LAZER)
+m_weaponType(BulletManager::WeaponType::BLASTER)
 {
 
 	m_origin = sf::Vector2f(m_position.x + m_WIDTH * 0.5f, m_position.y + m_HEIGHT * 0.5f);
@@ -117,7 +117,7 @@ void Player::Shoot(int towerNo)
 
 			sf::Vector2f position = m_towers.at(towerNo).getOrigin() + (m_bulletVel * 5.0f);
 			sf::Vector2f direction = m_bulletVel * m_BULLETSPEED;
-			BulletManager::Instance().PlayerFireBullet(position, m_BULLETSPEED, direction, BulletManager::SPREAD);
+			BulletManager::Instance().PlayerFireBullet(position, m_BULLETSPEED, direction, BulletManager::SPREAD, 5);
 		}
 	}
 	else if (m_weaponType == BulletManager::WeaponType::BLASTER)
@@ -127,7 +127,7 @@ void Player::Shoot(int towerNo)
 		m_bulletVel = sf::Vector2f(cos(PlControls::Instance().m_rightAnalogAngle), sin(PlControls::Instance().m_rightAnalogAngle));
 
 		sf::Vector2f direction = m_bulletVel * m_BULLETSPEED;
-		BulletManager::Instance().PlayerFireBullet(position, m_BULLETSPEED, direction, BulletManager::BLASTER);
+		BulletManager::Instance().PlayerFireBullet(position, m_BULLETSPEED, direction, BulletManager::BLASTER, 5);
 	}
 	else if (m_weaponType == BulletManager::WeaponType::LAZER)
 	{
@@ -142,7 +142,7 @@ void Player::Shoot(int towerNo)
 		m_bulletVel = sf::Vector2f(cos(temp2), sin(temp2));
 
 		sf::Vector2f direction = m_bulletVel * m_BULLETSPEED;
-		BulletManager::Instance().PlayerFireBullet(position, m_BULLETSPEED, direction, BulletManager::LAZER);
+		BulletManager::Instance().PlayerFireBullet(position, m_BULLETSPEED, direction, BulletManager::LAZER, 5);
 	}
 }
 

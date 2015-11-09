@@ -77,14 +77,14 @@ int BulletManager::AddStraight(StraightBulletGroup *p_pattern, sf::Vector2f p_po
 	return int(p_pattern->AddBullet(p_position, p_velocity, p_direction, m_pTextureAtlas, m_BLASTER_TEX_COORDS));
 }
 
-void BulletManager::PlayerFireBullet(sf::Vector2f p_position, float p_velocity, sf::Vector2f p_direction, BulletManager::WeaponType p_weaponType)
+void BulletManager::PlayerFireBullet(sf::Vector2f p_position, float p_velocity, sf::Vector2f p_direction, BulletManager::WeaponType p_weaponType, int p_radius)
 {
 	if (p_weaponType == WeaponType::BLASTER)
-		m_playerBullets.AddBullet(p_position, p_velocity, p_direction, m_pTextureAtlas, m_BLASTER_TEX_COORDS);
+		m_playerBullets.AddBullet(p_position, p_velocity, p_direction, m_pTextureAtlas, m_BLASTER_TEX_COORDS, p_radius);
 	else if (p_weaponType == WeaponType::LAZER)
-		m_playerBullets.AddBullet(p_position, p_velocity, p_direction, m_pTextureAtlas, m_LASER_TEX_COORDS);
+		m_playerBullets.AddBullet(p_position, p_velocity, p_direction, m_pTextureAtlas, m_LASER_TEX_COORDS, p_radius);
 	else if (p_weaponType == WeaponType::SPREAD)
-		m_playerBullets.AddBullet(p_position, p_velocity, p_direction, m_pTextureAtlas, m_SPREAD_TEX_COORDS);
+		m_playerBullets.AddBullet(p_position, p_velocity, p_direction, m_pTextureAtlas, m_SPREAD_TEX_COORDS, p_radius);
 }
 
 std::vector<BulletGroup*> * BulletManager::GetBulletList()
