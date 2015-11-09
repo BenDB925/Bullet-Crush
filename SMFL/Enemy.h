@@ -28,6 +28,7 @@ public:
 	void DestroyEnemy();
 	bool UpdateAnim(float p_dt);
 	Enemy::AliveState GetAliveState();
+	void ReduceHealth(int p_amt);
 
 
 protected:
@@ -35,14 +36,19 @@ protected:
 	sf::Vector2f m_velocity;
 	sf::Sprite m_sprite;
 	BulletGroup * m_bulletGroup;
+	int m_health;
+
 	sf::IntRect m_collisionBox;
 	sf::IntRect m_animBox;
+
 	AliveState m_aliveState;
 	int m_currentFrame;
 	float m_counterForAnim;
+
 	static const float m_DEATHANIMTIMER;
 	static const int m_EXPSIZE;
 	static const int m_TEXOFFSETY;
 	static const int m_MAXEXPFRAMES;
+	
 };	
 

@@ -35,6 +35,14 @@ void BulletManager::Update(sf::Time p_deltaTime, sf::Vector2f p_screenDimensions
 	{
 		if (m_bulletGroups.at(i)->m_bulletList.size() > 0)
 			m_bulletGroups.at(i)->Update(p_deltaTime, p_screenDimensions);
+
+
+	}
+
+	for (int i = 0; i < m_bulletGroups.size(); i++)
+	{
+		if (m_bulletGroups.at(i)->GetShouldBeDestroyed() && m_bulletGroups.at(i)->ShouldBeDestroyed())
+			m_bulletGroups.erase(m_bulletGroups.begin() + i);
 	}
 	m_playerBullets.Update(p_deltaTime, p_screenDimensions);
 }
@@ -109,7 +117,7 @@ void BulletManager::RemoveBulletGroup(BulletGroup * p_group)
 	{
 		if (*&m_bulletGroups.at(i) == *&p_group)
 		{
-			m_bulletGroups.erase(m_bulletGroups.begin() + i);
+			m_bulletGroups.at(i)->SetShouldBeDestroyed(true);
 		}
 	}
 }

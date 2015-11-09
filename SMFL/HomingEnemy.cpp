@@ -30,6 +30,7 @@ HomingEnemy::HomingEnemy(sf::Vector2f p_position, sf::Texture * p_tex, sf::IntRe
 	m_sprite.setTextureRect(p_texRect);
 	m_position = p_position;
 	m_sprite.setPosition(m_position);
+	m_health = 2;
 }
 
 

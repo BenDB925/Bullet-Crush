@@ -3,8 +3,8 @@
 #include "BulletManager.h"
 
 const float Player::m_ANIMTIMER = 30000;
-const float Player::m_BULLETDELAYTIMER = 80000;
-const float Player::m_SPEED = 0.000005;
+const float Player::m_BULLETDELAYTIMER = 50000;
+const float Player::m_SPEED = 0.000004;
 const float Player::m_BULLETSPEED = 2.1;
 const float Player::m_DEGTORAD = acos(-1) / 180;
 const float Player::m_SPREADANGLE = 10;
@@ -28,7 +28,7 @@ m_position(p_pos),
 m_delay(0),
 m_currentFrame(0),
 m_counterForAnim(0),
-m_weaponType(BulletManager::WeaponType::BLASTER)
+m_weaponType(BulletManager::WeaponType::SPREAD)
 {
 
 	m_origin = sf::Vector2f(m_position.x + m_WIDTH * 0.5f, m_position.y + m_HEIGHT * 0.5f);

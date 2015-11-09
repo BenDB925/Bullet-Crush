@@ -119,9 +119,6 @@
     <ClCompile Include="SMFL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StraightBulletGroup.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PlControls.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -157,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="WeakSpot.cpp">
       <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="StraightBulletGroup.cpp">
+      <Filter>Source Files\Bullets</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

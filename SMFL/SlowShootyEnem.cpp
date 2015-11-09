@@ -2,6 +2,7 @@
 #include "SlowShootyEnem.h"
 #include "BulletManager.h"
 
+
 const float SlowShootyEnem::m_ACCEL = 0.00001;
 const float SlowShootyEnem::m_MAX_SPEED = 0.0002;
 const float SlowShootyEnem::m_COLLISIONBOXSIZEWIDTH = 58;
@@ -15,9 +16,10 @@ SlowShootyEnem::SlowShootyEnem(sf::Vector2f p_position, sf::Texture * p_tex, sf:
 	m_sprite.setTextureRect(p_texRect);
 	m_position = p_position;
 	m_sprite.setPosition(m_position);
-	m_shotTimer = std::rand() % (int)m_TIME_BETWEEN_SHOTS;
+	m_shotTimer = (int(std::rand()) % (int)2000) * (m_TIME_BETWEEN_SHOTS / 2000);
 	m_bulletGroup = new StraightBulletGroup();
 	BulletManager::Instance().AddBulletGroup(*m_bulletGroup);
+	m_health = 4;
 }
 
 

@@ -73,3 +73,10 @@ Enemy::AliveState Enemy::GetAliveState()
 {
 	return m_aliveState;
 }
+
+void Enemy::ReduceHealth(int p_amt)
+{
+	m_health -= p_amt;
+	if (m_health < 0)
+		DestroyEnemy();
+}

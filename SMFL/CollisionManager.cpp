@@ -56,7 +56,7 @@ void CollisionManager::PlBulletEnemy()
 		for (int j = 0; j < bulletNum; j++)
 		{
 			sf::IntRect bulletRect = BulletManager::Instance().GetPlBulletList()->m_bulletList.at(j).GetCollisionRect();
-			if (enemyRect.intersects(bulletRect))
+			if (enemyRect.intersects(bulletRect) && EnemyManager::Instance().GetEnemyList()->at(i)->GetAliveState() == Enemy::AliveState::IS_ALIVE)
 			{
 				bool hasAddedindex = false;
 				for (int k = 0; k < shouldSkipEnemy.size(); k++)
@@ -90,7 +90,7 @@ void CollisionManager::PlBulletEnemy()
 	{
 		int index = shouldSkipEnemy.at(i);
 		if (index < EnemyManager::Instance().GetEnemyList()->size())
-			EnemyManager::Instance().GetEnemyList()->at(index)->DestroyEnemy();
+			EnemyManager::Instance().GetEnemyList()->at(index)->ReduceHealth(1);
 	}
 }
 

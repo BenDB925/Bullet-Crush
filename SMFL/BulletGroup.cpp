@@ -37,3 +37,13 @@ bool BulletGroup::ShouldBeDestroyed()
 {
 	return (m_bulletList.size() == 0);
 }
+
+void BulletGroup::SetShouldBeDestroyed(bool p_shouldBeDestroyed)
+{
+	m_shouldBeDestroyed = true;
+}
+
+bool BulletGroup::GetShouldBeDestroyed()
+{
+	return m_shouldBeDestroyed;
+}

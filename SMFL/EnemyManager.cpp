@@ -3,11 +3,15 @@
 #include "HomingEnemy.h"
 #include "SlowShootyEnem.h"
 #include "Boss.h"
+#include <cstdlib>
+#include <iostream>
+#include <ctime>
 
 bool hasHomingSpawned = false;
 
 EnemyManager::EnemyManager()
 {
+	std::srand(std::time(0));
 	m_enemyList = std::vector<Enemy*>();
 	m_HOMING_ENEM_COORDS = sf::IntRect(0, 301, 58, 50);
 	m_SLOW_SHOOTY_ENEM_COORDS = sf::IntRect(0, 301, 58, 50);
@@ -88,11 +92,11 @@ void EnemyManager::AddHomingWave(sf::Vector2f p_screenDimensions)
 	{
 		m_waveTimer = 0;
 		hasHomingSpawned = false;
-		for (int i = 0; i < 1; i++)
+		for (int i = 0; i < 10; i++)
 		{
-			for (int j = 0; j < 1; j++)
+			for (int j = 0; j < 5; j++)
 			{
-				AddHomingEnem(sf::Vector2f(rand() % (int)p_screenDimensions.x, -100 - (j * 50)));
+				AddHomingEnem(sf::Vector2f(std::rand() % (int)p_screenDimensions.x, -100 - (j * 50)));
 			}
 		}
 	}
@@ -103,11 +107,12 @@ void EnemyManager::AddSlowWave(sf::Vector2f p_screenDimensions)
 	if (m_waveTimer > m_TIME_BETWEEN_SLOW_WAVES && !hasHomingSpawned)
 	{
 		hasHomingSpawned = true;
-		for (int i = 0; i < 1; i++)
+		for (int i = 0; i < 5; i++)
 		{
 			for (int j = 0; j < 1; j++)
 			{
-				AddSlowShootyEnem(sf::Vector2f(sf::Vector2f(rand() % (int)p_screenDimensions.x, -100 - (j * 50))));
+				int xPos = int(std::rand() % (int)p_screenDimensions.x);
+				AddSlowShootyEnem(sf::Vector2f(sf::Vector2f(xPos, -100 - (j * 50))));
 			}
 		}
 	}

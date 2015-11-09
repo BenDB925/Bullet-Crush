@@ -11,6 +11,8 @@ public:
 
 	void Update(sf::Time p_deltaTime, sf::Vector2f p_screenDimensions);
 	float GetRadius();
+	void SetShouldBeDestroyed(bool p_shouldBeDestroyed);
+	bool GetShouldBeDestroyed();
 	bool ShouldBeDestroyed();
 	void AddBullet(sf::Vector2f p_position, float p_velocity, sf::Vector2f p_direction, sf::Texture *&p_tex, sf::IntRect p_texCoords){}
 
