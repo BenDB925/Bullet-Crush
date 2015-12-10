@@ -102,7 +102,7 @@ void Player::Update(float p_deltaTime)
 	/////////////////////////////////////////////
 	if (PlControls::Instance().m_rightStickEnabled)
 	{
-		if (m_delay <= 0)
+		if (m_delay < 0)
 		{
 			for (int towerNo = 0; towerNo < m_MAXTOWERS; towerNo++)
 				if (m_towers.at(towerNo).getAlive())

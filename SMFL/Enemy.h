@@ -2,6 +2,7 @@
 #include "SFML\System\Vector2.hpp"
 #include "SFML\Graphics\Sprite.hpp"
 #include "BulletGroup.h"
+#include "SoundManager.h"
 
 class Enemy
 {

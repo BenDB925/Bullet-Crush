@@ -41,6 +41,7 @@ bool Enemy::CheckOffScreen(sf::Vector2f p_screenDimensions)
 void Enemy::DestroyEnemy()
 {
 	m_aliveState = Enemy::AliveState::IS_PLAYING_ANIMATION;
+	SoundManager::Instance().PlaySoundEffect(SoundManager::SoundsList::EXPLOSION_SOUND);
 }
 
 bool Enemy::UpdateAnim(float p_dt)

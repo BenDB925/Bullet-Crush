@@ -101,9 +101,9 @@ void EnemyManager::AddHomingWave(sf::Vector2f p_screenDimensions)
 		m_waveTimer = 0;
 		hasHomingSpawned = false;
 		m_waveCounter --;
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 5; i++)
 		{
-			for (int j = 0; j < 5; j++)
+			for (int j = 0; j < 1; j++)
 			{
 				AddHomingEnem(sf::Vector2f(std::rand() % (int)p_screenDimensions.x, -100 - (j * 50)));
 			}

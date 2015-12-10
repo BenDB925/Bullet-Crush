@@ -34,13 +34,16 @@ void BulletManager::Update(sf::Time p_deltaTime, sf::Vector2f p_screenDimensions
 	{
 		if (m_bulletGroups.at(i)->m_bulletList.size() > 0)
 			m_bulletGroups.at(i)->Update(p_deltaTime, p_screenDimensions);
-	}
-
-	for (int i = 0; i < m_bulletGroups.size(); i++)
-	{
+		// Add back to for loop if breaks
+		/////////////////////////////////
 		if (m_bulletGroups.at(i)->GetShouldBeDestroyed() && m_bulletGroups.at(i)->ShouldBeDestroyed())
 			m_bulletGroups.erase(m_bulletGroups.begin() + i);
 	}
+
+	//for (int i = 0; i < m_bulletGroups.size(); i++)
+	//{
+
+	//}
 	m_playerBullets.Update(p_deltaTime, p_screenDimensions);
 }
 
@@ -53,6 +56,7 @@ void BulletManager::Draw(sf::RenderWindow& p_window)
 			p_window.draw(*m_bulletGroups.at(i)->m_bulletList.at(j).GetTexture());
 		}
 	}
+
 	for (int j = 0; j < m_playerBullets.m_bulletList.size(); j++)
 	{
 		p_window.draw(*m_playerBullets.m_bulletList.at(j).GetTexture());
