@@ -13,7 +13,7 @@ public:
 
 	sf::Vector2f getPosition();
 	sf::Sprite getSprite();
-	sf::Vector2f getOrigin();
+	sf::Vector2f getOrigin(float p_radius);
 	int getSize();
 	bool getAlive();
 	void setAlive(bool);

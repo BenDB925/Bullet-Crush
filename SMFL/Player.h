@@ -10,6 +10,8 @@
 #include "Tower.h"
 #include "BulletManager.h"
 
+
+
 class Player
 {
 public:
@@ -65,6 +67,6 @@ private:
 	static const float m_SPEED, m_BULLETSPEED;
 	static const int m_WIDTH, m_HEIGHT, m_MAXFRAMES, m_MAXTOWERS;
 	static const float m_DEGTORAD, m_SPREADANGLE;
-
+	static const int m_BLASTERRADIUS, m_SPREADRADIUS, m_LAZERRADIUS;
 };
 

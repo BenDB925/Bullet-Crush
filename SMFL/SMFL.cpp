@@ -30,13 +30,13 @@
 #include "Level.h"
 #include "CollisionManager.h"
 #include "UI.h"
-
+#include "SoundManager.h"
 
 
 // Game Modes
 //////////////////
 const byte MAINMENU = 0, GAME = 1, GAMEOVER = 2;
-byte gameMode = GAME;
+byte gameMode = MAINMENU;
 
 // Variables
 //////////////////
@@ -44,7 +44,8 @@ sf::Clock myClock;
 sf::Time deltaTime;
 Player player;
 Level level;
-sf::Texture m_tex, m_bgTex;
+sf::Texture m_tex, m_bgTex, m_titleTex;
+sf::Sprite m_titleSpr;
 std::vector<sf::Texture> m_backGroundTex;
 sf::Vector2f screenDimensions = sf::Vector2f(600, 800);
 int fps = 0;
@@ -61,10 +62,12 @@ void Init()
 	// Need a ref because m_tex goes out of scope and you
 	// get the white box. This is pointer to a ref I think ?????
 	/////////////////////////////////////////////////////
-	player = Player(*&m_tex, sf::Vector2f(280, 240));
+
+
+	player = Player(*&m_tex, sf::Vector2f(280, 600));
 	level = Level(*&m_backGroundTex, screenDimensions);
 	UI::Instance().Init(*&m_tex);
-
+	SoundManager::Instance().Init();
 	BulletManager::Instance().Init(*&m_tex);
 	EnemyManager::Instance().Init(*&m_tex);
 	CollisionManager::Instance().Init();
@@ -74,6 +77,9 @@ void LoadContent()
 
 	// Check that assets are been loaded
 	m_tex.loadFromFile("sprite.png");
+	m_titleTex.loadFromFile("title.png");
+	m_titleSpr.setTexture(m_titleTex);
+	m_titleSpr.setTextureRect(sf::IntRect(0, 0, 600, 800));
 
 	for (int i = 0; i < m_MAXLEVELS; i++)
 	{
@@ -89,6 +95,11 @@ void LoadContent()
 //////////////////
 void(UpdateMainMenu())
 {
+	if (PlControls::Instance().GetAnyKey())
+	{
+		gameMode = GAME;
+		SoundManager::Instance().PlaySoundBG(SoundManager::SoundsList::BACKGROUND_MUSIC_LEVEL_1);
+	}
 }
 void(UpdateGame())
 {
@@ -106,6 +117,7 @@ void(UpdateGameOver())
 //////////////////
 void(DrawMainMenu(sf::RenderWindow &p_window))
 {
+	p_window.draw(m_titleSpr);
 }
 void(DrawGame(sf::RenderWindow &p_window))
 {
@@ -189,6 +201,10 @@ int main()
 
 	// Create the main window 
 	sf::RenderWindow window(sf::VideoMode(screenDimensions.x, screenDimensions.y, 32), "SFML First Program");
+
+	//window.setFramerateLimit(60);
+	window.setVerticalSyncEnabled(true);
+
 	//load a font
 	font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
 	text.setFont(font);
@@ -240,6 +256,7 @@ int main()
 		// Update World, Events, Game
 		/////////////////////////////
 		Update();
+		//FMODsys->update();
 
 		// Draw World, Events, Game
 		/////////////////////////////

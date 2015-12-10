@@ -41,9 +41,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(FMOD_SDK)\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(FMOD_SDK)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(FMOD_SDK)\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(FMOD_SDK)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -97,6 +101,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlControls.h" />
     <ClInclude Include="SlowShootyEnem.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SpiralBulletPattern.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StraightBulletGroup.h" />
@@ -121,6 +126,7 @@
     <ClCompile Include="PlControls.cpp" />
     <ClCompile Include="SlowShootyEnem.cpp" />
     <ClCompile Include="SMFL.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SpiralBulletPattern.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

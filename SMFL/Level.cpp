@@ -28,7 +28,7 @@ Level::~Level()
 
 void Level::Update(float p_deltaTime)
 {
-	m_bgY -= p_deltaTime *60;
+	m_bgY -= p_deltaTime  * 30;
 	if (m_bgY <= 0)
 		m_bgY = m_screenDimensions.y * 0.5f;
 	m_bgSprite.setTextureRect(sf::IntRect(0, m_bgY, m_screenDimensions.x, m_screenDimensions.y));
