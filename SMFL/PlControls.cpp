@@ -3,9 +3,11 @@
 #include "SFML\Window\Joystick.hpp"
 
 
-PlControls::PlControls():
+PlControls::PlControls() :
 m_DEADZONEA(15),
-m_DEADZONEB(50)
+m_DEADZONEB(50),
+m_counter(0),
+m_buttonCount(sf::Joystick::getButtonCount(0))
 {
 
 }
@@ -28,6 +30,15 @@ PlControls& PlControls::Instance()
 
 void PlControls::Update(sf::Time p_deltaTime)
 {
+
+
+
+		m_anyKeyPressed = sf::Joystick::isButtonPressed(0, 0);
+
+
+	m_rightBumperPressed = sf::Joystick::isButtonPressed(0, 5);
+	m_leftBumperPressed = sf::Joystick::isButtonPressed(0, 4);
+
 	m_leftAnalogStick = sf::Vector2f(sf::Joystick::getAxisPosition(0, sf::Joystick::X), sf::Joystick::getAxisPosition(0, sf::Joystick::Y));
 	m_rightAnalogStick = sf::Vector2f(sf::Joystick::getAxisPosition(0, sf::Joystick::U), sf::Joystick::getAxisPosition(0, sf::Joystick::R));
 
@@ -50,4 +61,18 @@ void PlControls::Update(sf::Time p_deltaTime)
 	}
 	else
 		m_rightStickEnabled = false;
+}
+
+bool PlControls::GetRightBumperBtn()
+{
+	return m_rightBumperPressed;
+}
+bool PlControls::GetLeftBumperBtn()
+{
+	return m_leftBumperPressed;
+}
+
+bool PlControls::GetAnyKey()
+{
+	return m_anyKeyPressed;
 }

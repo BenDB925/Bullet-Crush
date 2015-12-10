@@ -31,12 +31,15 @@
 #include "CollisionManager.h"
 #include "UI.h"
 
-
+//FMOD includes
+#pragma comment(lib,"fmodex_vc.lib")
+#include "fmod.hpp"
+#include "fmod_errors.h"
 
 // Game Modes
 //////////////////
 const byte MAINMENU = 0, GAME = 1, GAMEOVER = 2;
-byte gameMode = GAME;
+byte gameMode = MAINMENU;
 
 // Variables
 //////////////////
@@ -44,7 +47,8 @@ sf::Clock myClock;
 sf::Time deltaTime;
 Player player;
 Level level;
-sf::Texture m_tex, m_bgTex;
+sf::Texture m_tex, m_bgTex, m_titleTex;
+sf::Sprite m_titleSpr;
 std::vector<sf::Texture> m_backGroundTex;
 sf::Vector2f screenDimensions = sf::Vector2f(600, 800);
 int fps = 0;
@@ -61,7 +65,7 @@ void Init()
 	// Need a ref because m_tex goes out of scope and you
 	// get the white box. This is pointer to a ref I think ?????
 	/////////////////////////////////////////////////////
-	player = Player(*&m_tex, sf::Vector2f(280, 240));
+	player = Player(*&m_tex, sf::Vector2f(280, 600));
 	level = Level(*&m_backGroundTex, screenDimensions);
 	UI::Instance().Init(*&m_tex);
 
@@ -74,6 +78,9 @@ void LoadContent()
 
 	// Check that assets are been loaded
 	m_tex.loadFromFile("sprite.png");
+	m_titleTex.loadFromFile("title.png");
+	m_titleSpr.setTexture(m_titleTex);
+	m_titleSpr.setTextureRect(sf::IntRect(0, 0, 600, 800));
 
 	for (int i = 0; i < m_MAXLEVELS; i++)
 	{
@@ -89,6 +96,8 @@ void LoadContent()
 //////////////////
 void(UpdateMainMenu())
 {
+	if (PlControls::Instance().GetAnyKey())
+		gameMode = GAME;
 }
 void(UpdateGame())
 {
@@ -106,6 +115,7 @@ void(UpdateGameOver())
 //////////////////
 void(DrawMainMenu(sf::RenderWindow &p_window))
 {
+	p_window.draw(m_titleSpr);
 }
 void(DrawGame(sf::RenderWindow &p_window))
 {
@@ -187,6 +197,36 @@ void Draw(sf::RenderWindow &p_window)
 int main()
 {
 
+	//setup FMOD
+	FMOD::System *FMODsys; //will point to the FMOD system
+	FMOD_RESULT result;
+	result = FMOD::System_Create(&FMODsys);         // Create the main system object.
+	if (result != FMOD_OK)
+	{
+		std::cout << "FMOD error!" << result << FMOD_ErrorString(result);
+		exit(-1);
+	}
+	result = FMODsys->init(100, FMOD_INIT_NORMAL, 0);   // Initialize FMOD.
+	if (result != FMOD_OK)
+	{
+		std::cout << "FMOD error!" << result << FMOD_ErrorString(result);
+		exit(-1);
+	}
+
+
+	FMOD::Sound *sound;
+	result = FMODsys->createSound("stage1.mp3", FMOD_DEFAULT, 0, &sound);
+	if (result != FMOD_OK)
+	{
+		std::cout << "FMOD error! (%d) %s\n" << result;
+		exit(-1);
+	}
+
+	FMOD::Channel *channel;
+	FMODsys->playSound(FMOD_CHANNEL_FREE, sound, false, &channel);
+
+
+
 	// Create the main window 
 	sf::RenderWindow window(sf::VideoMode(screenDimensions.x, screenDimensions.y, 32), "SFML First Program");
 	//load a font
@@ -240,6 +280,7 @@ int main()
 		// Update World, Events, Game
 		/////////////////////////////
 		Update();
+		FMODsys->update();
 
 		// Draw World, Events, Game
 		/////////////////////////////

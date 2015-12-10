@@ -10,8 +10,17 @@
 class Bullet
 {
 public:
+
+	enum BulletType
+	{
+		BLASTER,
+		SPREAD,
+		LAZER,
+		DEFAULT
+	};
+
 	Bullet();
-	Bullet(sf::Vector2f p_position, sf::Vector2f p_velocity, sf::Texture *&p_tex, sf::IntRect p_texCoords, int p_radius = 5);
+	Bullet(sf::Vector2f p_position, sf::Vector2f p_velocity, sf::Texture *&p_tex, sf::IntRect p_texCoords, int p_radius = 5, Bullet::BulletType = Bullet::BulletType::DEFAULT);
 	~Bullet();
 	void Update(sf::Time p_deltaTime);
 
@@ -19,6 +28,7 @@ public:
 	sf::Vector2f GetPosition();
 	sf::IntRect GetCollisionRect();
 	void SetPosition(sf::Vector2f p_pos);
+	Bullet::BulletType GetType();
 
 private:
 	sf::Vector2f m_position;
@@ -27,5 +37,6 @@ private:
 	sf::Sprite m_sprite;
 	sf::IntRect m_collisionRect;
 	static const float m_RADTODEG;
+	BulletType m_type;
 };
 

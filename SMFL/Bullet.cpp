@@ -8,9 +8,9 @@ Bullet::Bullet()
 {
 }
 
-Bullet::Bullet(sf::Vector2f p_position, sf::Vector2f p_velocity, sf::Texture *&p_tex, sf::IntRect p_texCoords, int p_radius)
+Bullet::Bullet(sf::Vector2f p_position, sf::Vector2f p_velocity, sf::Texture *&p_tex, sf::IntRect p_texCoords, int p_radius, Bullet::BulletType p_type)
 {
-
+	m_type = p_type;
 	m_position = p_position;
 	m_velocity = p_velocity;
 
@@ -23,7 +23,6 @@ Bullet::Bullet(sf::Vector2f p_position, sf::Vector2f p_velocity, sf::Texture *&p
 	m_sprite.setOrigin(m_radius, m_radius);
 	m_position += m_sprite.getOrigin();
 
-	//Magic Numbers to rotate the right way blah blah, need a conversion for rad to deg90 for the offset
 	m_sprite.setRotation(atan2(m_velocity.y, m_velocity.x) * m_RADTODEG + 90);
 
 }
@@ -41,9 +40,8 @@ sf::Sprite * Bullet::GetTexture()
 void Bullet::Update(sf::Time p_deltaTime)
 {
 	m_position += sf::Vector2f(m_velocity.x * p_deltaTime.asSeconds() * 100, m_velocity.y * p_deltaTime.asSeconds() * 100);
-	//m_circleShape.setPosition(m_position);
 	m_sprite.setPosition(m_position);
-	
+
 	m_collisionRect = sf::IntRect(m_position.x - m_radius, m_position.y - m_radius, m_radius * 2, m_radius * 2);
 }
 
@@ -60,5 +58,10 @@ sf::IntRect Bullet::GetCollisionRect()
 void Bullet::SetPosition(sf::Vector2f p_pos)
 {
 	m_position = p_pos;
+}
+
+Bullet::BulletType Bullet::GetType()
+{
+	return m_type;
 }
 

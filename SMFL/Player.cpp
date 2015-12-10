@@ -3,8 +3,8 @@
 #include "BulletManager.h"
 
 const float Player::m_ANIMTIMER = 30000;
-const float Player::m_BULLETDELAYTIMER = 50000;
-const float Player::m_SPEED = 0.000004;
+const float Player::m_BULLETDELAYTIMER = 80000;
+const float Player::m_SPEED = 0.000005;
 const float Player::m_BULLETSPEED = 2.1;
 const float Player::m_DEGTORAD = acos(-1) / 180;
 const float Player::m_SPREADANGLE = 10;
@@ -14,6 +14,10 @@ const int Player::m_MAXFRAMES = 5;
 const int Player::m_WIDTH = 64;
 const int Player::m_HEIGHT = 78;
 const float Player::m_COLLISIONBOXSIZE = 50;
+
+const int Player::m_BLASTERRADIUS = 11;
+const int Player::m_SPREADRADIUS = 5;
+const int Player::m_LAZERRADIUS = 64;
 
 // Default Constructor
 ///////////////////////////
@@ -28,7 +32,7 @@ m_position(p_pos),
 m_delay(0),
 m_currentFrame(0),
 m_counterForAnim(0),
-m_weaponType(BulletManager::WeaponType::SPREAD)
+m_weaponType(BulletManager::WeaponType::BLASTER)
 {
 
 	m_origin = sf::Vector2f(m_position.x + m_WIDTH * 0.5f, m_position.y + m_HEIGHT * 0.5f);
@@ -56,6 +60,11 @@ Player::~Player()
 
 void Player::Update(float p_deltaTime)
 {
+
+	if (PlControls::Instance().GetRightBumperBtn())
+		m_weaponType = BulletManager::WeaponType::SPREAD;
+	else if (PlControls::Instance().GetLeftBumperBtn())
+		m_weaponType = BulletManager::WeaponType::BLASTER;
 
 	// Animate my Helicopter
 	////////////////////////////
@@ -96,8 +105,8 @@ void Player::Update(float p_deltaTime)
 		if (m_delay <= 0)
 		{
 			for (int towerNo = 0; towerNo < m_MAXTOWERS; towerNo++)
-			if (m_towers.at(towerNo).getAlive())
-				Shoot(towerNo);
+				if (m_towers.at(towerNo).getAlive())
+					Shoot(towerNo);
 			m_delay = m_BULLETDELAYTIMER;
 		}
 	}
@@ -115,7 +124,7 @@ void Player::Shoot(int towerNo)
 			float temp = bulletNo * m_DEGTORAD;
 			m_bulletVel = sf::Vector2f(cos(PlControls::Instance().m_rightAnalogAngle + temp), sin(PlControls::Instance().m_rightAnalogAngle + temp));
 
-			sf::Vector2f position = m_towers.at(towerNo).getOrigin() + (m_bulletVel * 5.0f);
+			sf::Vector2f position = m_towers.at(towerNo).getOrigin(m_SPREADRADIUS) + (m_bulletVel * 5.0f);
 			sf::Vector2f direction = m_bulletVel * m_BULLETSPEED;
 			BulletManager::Instance().PlayerFireBullet(position, m_BULLETSPEED, direction, BulletManager::SPREAD, 5);
 		}
@@ -123,11 +132,11 @@ void Player::Shoot(int towerNo)
 	else if (m_weaponType == BulletManager::WeaponType::BLASTER)
 	{
 
-		sf::Vector2f position = m_towers.at(towerNo).getOrigin() + (m_bulletVel * 5.0f);
+		sf::Vector2f position = m_towers.at(towerNo).getOrigin(m_BLASTERRADIUS);
 		m_bulletVel = sf::Vector2f(cos(PlControls::Instance().m_rightAnalogAngle), sin(PlControls::Instance().m_rightAnalogAngle));
 
 		sf::Vector2f direction = m_bulletVel * m_BULLETSPEED;
-		BulletManager::Instance().PlayerFireBullet(position, m_BULLETSPEED, direction, BulletManager::BLASTER, 5);
+		BulletManager::Instance().PlayerFireBullet(position, m_BULLETSPEED, direction, BulletManager::BLASTER, m_BLASTERRADIUS);
 	}
 	else if (m_weaponType == BulletManager::WeaponType::LAZER)
 	{
@@ -136,13 +145,22 @@ void Player::Shoot(int towerNo)
 		float magicCircle = 400;
 
 		sf::Vector2f newAngle = sf::Vector2f(cos(PlControls::Instance().m_rightAnalogAngle) * magicCircle + m_origin.x, sin(PlControls::Instance().m_rightAnalogAngle) * magicCircle + m_origin.y);
-		sf::Vector2f position = m_towers.at(towerNo).getOrigin() + (m_bulletVel * 5.0f);
+		sf::Vector2f position = m_towers.at(towerNo).getOrigin(m_LAZERRADIUS) + (m_bulletVel * 5.0f);
 
 		float temp2 = atan2(newAngle.y - position.y, newAngle.x - position.x);
 		m_bulletVel = sf::Vector2f(cos(temp2), sin(temp2));
 
 		sf::Vector2f direction = m_bulletVel * m_BULLETSPEED;
 		BulletManager::Instance().PlayerFireBullet(position, m_BULLETSPEED, direction, BulletManager::LAZER, 5);
+	}
+	else if (m_weaponType == BulletManager::WeaponType::DEFAULT)
+	{
+
+		sf::Vector2f position = m_towers.at(towerNo).getOrigin(m_BLASTERRADIUS);
+		m_bulletVel = sf::Vector2f(cos(PlControls::Instance().m_rightAnalogAngle), sin(PlControls::Instance().m_rightAnalogAngle));
+
+		sf::Vector2f direction = m_bulletVel * m_BULLETSPEED;
+		BulletManager::Instance().PlayerFireBullet(position, m_BULLETSPEED, direction, BulletManager::DEFAULT, m_SPREADRADIUS);
 	}
 }
 
@@ -158,9 +176,11 @@ std::vector<sf::Sprite> Player::getSprite()
 {
 	std::vector<sf::Sprite> sprites;
 	sprites.push_back(m_playerSprite);
+
 	for (int i = 0; i < m_MAXTOWERS; i++)
-	if (m_towers.at(i).getAlive())
-		sprites.push_back(m_towers.at(i).getSprite());
+		if (m_towers.at(i).getAlive())
+			sprites.push_back(m_towers.at(i).getSprite());
+
 
 	return sprites;
 }

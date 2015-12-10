@@ -16,7 +16,8 @@ public:
 	{
 		BLASTER,
 		LAZER,
-		SPREAD
+		SPREAD,
+		DEFAULT
 	};
 
 	BulletManager();
@@ -48,5 +49,6 @@ private:
 	sf::IntRect m_SPREAD_TEX_COORDS;
 	sf::IntRect m_BLASTER_TEX_COORDS;
 	sf::IntRect m_LASER_TEX_COORDS;
+	sf::IntRect m_DEFAULT_TEX_COORDS;
 };
 

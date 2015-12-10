@@ -1,12 +1,11 @@
 #include "stdafx.h"
 #include "Tower.h"
 
-
 Tower::Tower()
 {
 }
 
-Tower::Tower(sf::Sprite p_sprite, sf::Vector2f p_pos, bool p_alive):
+Tower::Tower(sf::Sprite p_sprite, sf::Vector2f p_pos, bool p_alive) :
 m_sprite(p_sprite),
 m_position(p_pos),
 m_alive(p_alive)
@@ -40,9 +39,9 @@ void Tower::Update(sf::Vector2f p_velocity)
 	m_sprite.setPosition(m_position);
 }
 
-sf::Vector2f Tower::getOrigin()
+sf::Vector2f Tower::getOrigin(float p_radius)
 {
-	return sf::Vector2f(m_position.x + 5, m_position.y + 5);
+	return sf::Vector2f(m_position.x + (m_size * 0.5) - p_radius, m_position.y + (m_size * 0.5) - p_radius);
 }
 
 int Tower::getSize()
