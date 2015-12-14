@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
+#include "SFML\Graphics\RectangleShape.hpp"
 
 bool hasHomingSpawned = false;
 
@@ -61,6 +62,22 @@ void EnemyManager::Update(sf::Vector2f p_playerPos, float p_dt, sf::Vector2f p_s
 			m_enemyList.erase(m_enemyList.begin() + i);
 		}
 	}
+
+
+	if (m_waveCounter == 0) // if in the boss mode
+	{
+		for (int i = 0; i < m_boss.GetTowerList()->size(); i++)
+		{
+			if (m_boss.GetTowerList()->at(i).UpdateAnim(p_dt) == false)
+				m_boss.GetTowerList()->erase(m_boss.GetTowerList()->begin() + i);
+		}
+		m_boss.Update(p_playerPos, p_dt);
+		if (m_boss.CheckIfDefeated())
+		{
+			m_waveCounter = 5;
+			m_boss = Boss(m_textureAtlas, m_BOSS_COORDS);
+		}
+	}
 }
 
 void EnemyManager::Draw(sf::RenderWindow& p_window)
@@ -70,11 +87,22 @@ void EnemyManager::Draw(sf::RenderWindow& p_window)
 		p_window.draw(*m_enemyList.at(i)->GetTexture());
 	}
 
+
+	//for (int i = 0; i < m_boss.GetTowerList()->size(); i++)
+	//{
+	//	sf::RectangleShape rect;
+	//	rect = sf::RectangleShape(sf::Vector2f(m_boss.GetTowerList()->at(i).GetCollisionBox().width, m_boss.GetTowerList()->at(i).GetCollisionBox().height));
+	//	rect.setPosition(sf::Vector2f(m_boss.GetTowerList()->at(i).GetCollisionBox().left, m_boss.GetTowerList()->at(i).GetCollisionBox().top));
+	//	p_window.draw(rect);
+	//}
+
 	std::vector<sf::Sprite> bossSprites = m_boss.GetTextureList();
 	for (int i = 0; i < bossSprites.size(); i++)
 	{
 		p_window.draw(bossSprites.at(i));
 	}
+
+
 }
 
 void EnemyManager::AddHomingEnem(sf::Vector2f p_position)
@@ -131,13 +159,19 @@ void EnemyManager::ManageEnemySpawning(sf::Vector2f p_screenDimensions, sf::Vect
 {
 	m_waveTimer += p_dt / 10000;
 
-	if (m_waveCounter == 0)
-	{
-		m_boss.Update(p_playerPos, p_dt);
-	}
-	else
+	if (m_waveCounter != 0)
 	{
 		AddHomingWave(p_screenDimensions);
 		AddSlowWave(p_screenDimensions);
 	}
+}
+
+Boss * EnemyManager::GetBoss()
+{
+	return &m_boss;
+}
+
+bool EnemyManager::ShouldCheckBoss()
+{
+	return (m_waveCounter == 0);
 }

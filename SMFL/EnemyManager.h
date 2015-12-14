@@ -14,7 +14,8 @@ public:
 	void Update(sf::Vector2f p_playerPos, float p_dt, sf::Vector2f p_screenDimensions);
 	void Draw(sf::RenderWindow& p_window);
 	std::vector<Enemy*> * GetEnemyList();
-
+	Boss * GetBoss();
+	bool ShouldCheckBoss();
 private:
 	std::vector<Enemy*> m_enemyList;
 	Boss m_boss;
@@ -37,6 +38,6 @@ private:
 	const float m_TIME_BETWEEN_SLOW_WAVES = 70;
 	float m_waveTimer = 0;
 	const int m_NUM_WAVES_BETWEEN_BOSS = 3;
-	int m_waveCounter = 25;
+	int m_waveCounter = 5;
 };
 

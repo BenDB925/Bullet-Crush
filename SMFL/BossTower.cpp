@@ -22,8 +22,9 @@ sf::Vector2f NormaliseVec(sf::Vector2f * p_vec)
 		return sf::Vector2f(0, 0);
 }
 
-BossTower::BossTower(sf::Vector2f p_position, sf::Texture * p_tex, sf::IntRect p_texRect)
+BossTower::BossTower(sf::Vector2f p_position, sf::Texture * p_tex, sf::IntRect p_texRect, sf::IntRect p_collRect)
 {
+	m_collisionBox = p_collRect;
 	m_position = p_position;
 	m_sprite.setPosition(m_position);
 	m_sprite.setTexture(*p_tex);
@@ -31,6 +32,7 @@ BossTower::BossTower(sf::Vector2f p_position, sf::Texture * p_tex, sf::IntRect p
 	m_bulletGroup = new StraightBulletGroup();
 	BulletManager::Instance().AddBulletGroup(*m_bulletGroup);
 	m_shotTimer = 0;
+	m_health = 1000;
 }
 
 
@@ -53,12 +55,17 @@ void BossTower::Update(sf::Vector2f p_playerPos, float p_dt)
 		m_shotTimer = 0;
 		Shoot(p_playerPos);
 	}
+
+
+
 }
 
 void BossTower::UpdatePosition(sf::Vector2f p_distMoved)
 {
 	m_position += p_distMoved;
 	m_sprite.setPosition(m_position);
+	m_collisionBox.left += p_distMoved.x;
+	m_collisionBox.top += p_distMoved.y;
 }
 
 sf::Sprite * BossTower::GetTexture()

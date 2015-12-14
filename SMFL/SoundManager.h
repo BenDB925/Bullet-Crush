@@ -5,6 +5,7 @@
 #include "fmod_errors.h"
 #include <vector>
 #include<string>
+#include "SFML\System\Vector2.hpp"
 
 class SoundManager
 {
@@ -20,14 +21,13 @@ public:
 	static SoundManager& Instance();
 
 
-	void PlaySoundEffect(SoundManager::SoundsList p_effect);
+	void PlaySoundEffect3D(sf::Vector2f p_pos);
 	void PlaySoundBG(SoundManager::SoundsList p_effect);
 	void StopSound();
-	void UpdateSound();
+	void UpdateSound(sf::Vector2f p_pos, sf::Vector2f p_vel);
 	void Init();
 
-
-
+	bool Sound3Denabled;
 	
 
 private:
@@ -36,11 +36,13 @@ private:
 	const static char* BACKGROUND_MUSIC_LVL_1;
 	const static char* BACKGROUND_MUSIC_LVL_2;
 	const static char* EXPLOSION;
-
+	float volume;
 	FMOD::System *FMODsys; //will point to the FMOD system
+	FMOD::System *FMODsys2;
 	FMOD_RESULT result;
 	FMOD::Sound *sound;
 	std::vector<FMOD::Sound*> sounds;
 	FMOD::Channel *channel;
 	FMOD::Channel *channel20;
+	FMOD_VECTOR sourcePos; 
 };

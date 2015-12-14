@@ -26,6 +26,7 @@ public:
 	void Update(float p_deltaTime);
 
 	sf::Vector2f getPosition();
+	sf::Vector2f getVelocity();
 	std::vector<sf::Sprite> getSprite();
 	void Shoot(int);
 

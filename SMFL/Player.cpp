@@ -171,6 +171,10 @@ sf::Vector2f Player::getPosition()
 {
 	return m_position;
 }
+sf::Vector2f Player::getVelocity()
+{
+	return m_velocity;
+}
 
 std::vector<sf::Sprite> Player::getSprite()
 {

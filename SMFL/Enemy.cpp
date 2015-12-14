@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Enemy.h"
+#include "Score.h"
 
 const float Enemy::m_DEATHANIMTIMER = 30000;
 const int Enemy::m_MAXEXPFRAMES = 7;
@@ -40,8 +41,9 @@ bool Enemy::CheckOffScreen(sf::Vector2f p_screenDimensions)
 
 void Enemy::DestroyEnemy()
 {
+	Score::Instance().currentScore += 10;
 	m_aliveState = Enemy::AliveState::IS_PLAYING_ANIMATION;
-	SoundManager::Instance().PlaySoundEffect(SoundManager::SoundsList::EXPLOSION_SOUND);
+	SoundManager::Instance().PlaySoundEffect3D(m_position);
 }
 
 bool Enemy::UpdateAnim(float p_dt)
