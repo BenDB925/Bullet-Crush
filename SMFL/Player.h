@@ -10,7 +10,7 @@
 #include "Tower.h"
 #include "BulletManager.h"
 
-
+#pragma once
 
 class Player
 {
@@ -32,16 +32,34 @@ public:
 
 	sf::IntRect GetCollisionBox();
 
+	enum AliveState
+	{
+		ALIVE,
+		DEAD,
+		PLAYING_ANIM,
+		INVUNRABLE,
+	};
+
+	void SetAliveState(AliveState p_state);
+	int GetLivesNum();
+	bool CheckIfInvulnerable();
+	bool CheckIfHidden();
+	AliveState GetAliveState();
 private:
+
+	void UpdateAlive(float p_dt);
+	void UpdateDead(float p_dt);
+	void UpdateAnim(float p_dt);
+
 
 	BulletManager::WeaponType m_weaponType;
 
-	//Jay Added These
-	////////////////////////////////////
-
 	float m_angle, m_radiusForAngle;
-	float m_delay, m_counterForAnim;
+	float m_delay, m_counterForHeliAnim;
 
+	int m_lives;
+	static const int m_MAX_LIVES;
+	AliveState m_aliveState;
 
 	sf::Vector2f m_position, m_origin, m_velocity;
 	sf::Vector2f m_bulletVel;
@@ -63,7 +81,22 @@ private:
 	StraightBulletGroup m_bulletList;
 	sf::IntRect m_collisionRect;
 
-	static const float m_COLLISIONBOXSIZE;
+	bool m_isInvulnerable;
+	static const int m_INVULNERABLE_LENGTH;
+	float m_invulnerableCounter;
+	int m_flashCounter;
+	static const int m_FLASH_TIMER;
+	bool m_shouldBeHidden;
+
+	static const int m_DEATHANIMTIMER;
+	float m_counterFordeathAnim;
+	static const int m_MAXEXPFRAMES;
+	sf::IntRect m_animBox;
+	static const int m_EXPSIZE;
+	static const int m_TEXOFFSETY;
+
+	static const float m_COLLISIONBOXWIDTH;
+	static const float m_COLLISIONBOXHEIGHT;
 	static const float m_ANIMTIMER, m_BULLETDELAYTIMER;
 	static const float m_SPEED, m_BULLETSPEED;
 	static const int m_WIDTH, m_HEIGHT, m_MAXFRAMES, m_MAXTOWERS;

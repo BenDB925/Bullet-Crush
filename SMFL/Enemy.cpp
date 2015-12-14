@@ -50,8 +50,6 @@ bool Enemy::UpdateAnim(float p_dt)
 {
 	if (m_aliveState == Enemy::AliveState::IS_PLAYING_ANIMATION)
 	{
-		// Animate my Helicopter
-		////////////////////////////
 		m_counterForAnim += p_dt;
 
 		if (m_counterForAnim > m_DEATHANIMTIMER)

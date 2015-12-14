@@ -4,6 +4,7 @@
 #include "SFML\Graphics\Rect.hpp"
 #include "BulletManager.h"
 #include "Enemy.h"
+#include "Player.h"
 
 
 struct CorrespondingEnem 
@@ -167,4 +168,48 @@ void CollisionManager::CheckBossCollisions(sf::IntRect p_playerPos)
 		else if (correspondingList.at(i).m_bull->GetType() == Bullet::SPREAD)
 			EnemyManager::Instance().GetBoss()->GetTowerList()->at(correspondingList.at(i).m_enemIndex).ReduceHealth(1);
 	}
+}
+
+void CollisionManager::EnemBulletPl(Player * p_player)
+{
+	int bulletNum = 0;
+	sf::IntRect plRect = p_player->GetCollisionBox();
+	std::vector<Bullet*> bullList = std::vector<Bullet*>();
+	int bullToRemove = -1;
+
+	for (int i = 0; i < BulletManager::Instance().GetBulletList()->size(); i++)
+	{
+		for (int j = 0; j < BulletManager::Instance().GetBulletList()->at(i)->m_bulletList.size(); j++)
+		{
+			bullList.push_back(&BulletManager::Instance().GetBulletList()->at(i)->m_bulletList.at(j));
+			bulletNum++;
+		}
+	}
+
+	bool hasBeenHit = false;
+
+	for (int i = 0; i < bulletNum; i++)
+	{
+		if (bullList.at(i)->GetCollisionRect().intersects(plRect) && !hasBeenHit && !p_player->CheckIfInvulnerable() && p_player->GetAliveState() == Player::ALIVE)
+		{
+			p_player->SetAliveState(Player::AliveState::PLAYING_ANIM);
+			hasBeenHit = true;
+			bullToRemove = i;
+		}
+	}
+
+	if (hasBeenHit == true)
+	{
+		for (int i = 0; i < BulletManager::Instance().GetBulletList()->size(); i++)
+		{
+			for (int j = 0; j < BulletManager::Instance().GetBulletList()->at(i)->m_bulletList.size(); j++)
+			{
+				if (&BulletManager::Instance().GetBulletList()->at(i)->m_bulletList.at(j) == bullList.at(bullToRemove))
+				{
+					BulletManager::Instance().GetBulletList()->at(i)->m_bulletList.erase(BulletManager::Instance().GetBulletList()->at(i)->m_bulletList.begin() + j);
+				}
+			}
+		}
+	}
+	
 }

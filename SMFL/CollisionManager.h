@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "SFML\Graphics\Texture.hpp"
 #include "SFML\System\Vector2.hpp"
+#include "Player.h"
 class CollisionManager
 {
 public:
@@ -15,6 +16,7 @@ public:
 
 	void CheckCollisions(sf::IntRect p_playerPos);
 	void CheckBossCollisions(sf::IntRect p_playerPos);
+	void EnemBulletPl(Player * p_player);
 private:
 	void PlBulletEnemy();
 };
